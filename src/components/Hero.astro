@@ -1,0 +1,33 @@
+---
+import type { Copy } from "../data/i18n";
+import { withBase } from "../lib/paths";
+import HeroViz from "./HeroViz.astro";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+---
+
+<section class="hero" aria-labelledby="hero-name">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker">{copy.hero.kicker}</p>
+      <h1 id="hero-name">{copy.hero.name}</h1>
+      <p class="hero-alt">{copy.hero.nameAlt}</p>
+      <p class="hero-role">{copy.hero.role}</p>
+      <p class="hero-aff">{copy.hero.affiliation}</p>
+      <p class="hero-lab">{copy.hero.lab}</p>
+      <p class="hero-line">{copy.hero.line}</p>
+      <p class="hero-core">{copy.hero.core}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={withBase(`${copy.homeHref}#research`)}>{copy.hero.explore}</a>
+        <a class="btn btn-ghost" href={withBase(copy.publicationsHref)}>{copy.hero.selected}</a>
+        <a class="btn btn-orange" href={withBase(copy.lang === "zh" ? "/zh/cv/" : "/cv/")}>{copy.hero.cv}</a>
+      </div>
+      <p class="cv-note">{copy.hero.cvNote}</p>
+    </div>
+    <HeroViz />
+  </div>
+</section>

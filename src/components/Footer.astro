@@ -1,0 +1,17 @@
+---
+import type { Copy } from "../data/i18n";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>{copy.footer.identity}</p>
+    <p>{copy.footer.scope}</p>
+    <p>{copy.footer.license}</p>
+  </div>
+</footer>

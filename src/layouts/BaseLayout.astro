@@ -1,0 +1,81 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE } from "../data/site";
+import type { Copy } from "../data/i18n";
+import { alternatePaths, withBase } from "../lib/paths";
+
+interface Props {
+  copy: Copy;
+  title?: string;
+  description?: string;
+  canonicalPath: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { copy, title, description, canonicalPath, jsonLd } = Astro.props;
+const pageTitle = title ?? copy.meta.title;
+const pageDescription = description ?? copy.meta.description;
+const origin = Astro.site ?? new URL("https://yikunpeng82-sys.github.io");
+const canonical = new URL(withBase(canonicalPath), origin).href;
+const alternates = alternatePaths(canonicalPath);
+const alternateEn = new URL(withBase(alternates.en), origin).href;
+const alternateZh = new URL(withBase(alternates.zh), origin).href;
+
+const personLd = jsonLd ?? {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: SITE.nameEn,
+  alternateName: [SITE.nameZh, SITE.nameZhVariant],
+  jobTitle: SITE.titleEn,
+  email: `mailto:${SITE.email}`,
+  url: canonical,
+  affiliation: {
+    "@type": "Organization",
+    name: SITE.orgEn,
+    department: SITE.labEn,
+  },
+  sameAs: [SITE.scholarUrl, SITE.casUrl, SITE.labProfileUrl, SITE.ucasUrl],
+};
+---
+
+<!doctype html>
+<html lang={copy.htmlLang} dir={copy.dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="author" content={`${SITE.nameEn} / ${SITE.nameZh}`} />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={alternateEn} />
+    <link rel="alternate" hreflang="zh-CN" href={alternateZh} />
+    <link rel="alternate" hreflang="x-default" href={alternateEn} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={copy.meta.ogLocale} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">{copy.skip}</a>
+    <Header copy={copy} />
+    <main id="content">
+      <slot />
+    </main>
+    <Footer copy={copy} />
+  </body>
+</html>

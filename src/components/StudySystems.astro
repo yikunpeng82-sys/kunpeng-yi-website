@@ -1,0 +1,33 @@
+---
+import type { Copy } from "../data/i18n";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+---
+
+<section class="section" id={copy.systems.id} aria-labelledby="systems-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" style="color: var(--wetland)">{copy.systems.kicker}</p>
+      <h2 id="systems-title">{copy.systems.title}</h2>
+      <p>{copy.systems.intro}</p>
+    </div>
+    <div class="systems">
+      {
+        copy.systems.groups.map((group) => (
+          <div class="system-group">
+            <h3>{group.label}</h3>
+            <div class="chip-row">
+              {group.tags.map((tag) => (
+                <span class="chip">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

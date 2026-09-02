@@ -1,0 +1,34 @@
+---
+import type { Copy } from "../data/i18n";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+---
+
+<section class="section" id={copy.about.id} aria-labelledby="about-title">
+  <div class="wrap about-grid">
+    <div>
+      <p class="kicker" style="color: var(--wetland)">{copy.about.kicker}</p>
+      <h2 id="about-title">{copy.about.title}</h2>
+      <p><strong>{copy.about.lead}</strong></p>
+      {copy.about.body.map((para) => <p>{para}</p>)}
+      <p class="about-note">{copy.about.nameNote}</p>
+    </div>
+    <aside>
+      <h3 style="margin-top:2.1rem; color: var(--navy)">{copy.about.timelineTitle}</h3>
+      <ol class="timeline">
+        {
+          copy.about.timeline.map((item) => (
+            <li>
+              <strong>{item.role}</strong>
+              <span>{item.place}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </aside>
+  </div>
+</section>

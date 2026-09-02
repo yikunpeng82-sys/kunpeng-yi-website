@@ -1,0 +1,50 @@
+---
+import type { Copy } from "../data/i18n";
+import { selectedPublications, formatAuthors, doiUrl, FILTER_LABELS } from "../data/publications";
+import type { FilterId } from "../data/publications";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const items = selectedPublications();
+---
+
+<section class="section band-sand" id={copy.selected.id} aria-labelledby="selected-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" style="color: var(--wetland)">{copy.selected.kicker}</p>
+      <h2 id="selected-title">{copy.selected.title}</h2>
+      <p>{copy.selected.intro}</p>
+    </div>
+    <div class="work-grid">
+      {
+        items.map((paper) => (
+          <article class="work-card">
+            <p class="meta-line">
+              {paper.year} · {paper.journal}
+            </p>
+            <h3>{paper.title}</h3>
+            <p class="authors">{formatAuthors(paper.authors, copy.lang)}</p>
+            <p>{paper.summary[copy.lang]}</p>
+            <div class="tags">
+              {paper.filters.map((id: FilterId) => (
+                <span class="tag">{FILTER_LABELS[id][copy.lang]}</span>
+              ))}
+            </div>
+            <p style="margin: 0.9rem 0 0">
+              {paper.doi ? (
+                <a href={doiUrl(paper.doi)} rel="noopener noreferrer">
+                  {copy.selected.read}: {paper.doi}
+                </a>
+              ) : (
+                <span>{copy.selected.doiPending}</span>
+              )}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

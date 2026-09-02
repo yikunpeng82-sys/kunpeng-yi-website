@@ -1,0 +1,47 @@
+---
+import type { Copy } from "../data/i18n";
+import { homePublications, formatAuthors, doiUrl } from "../data/publications";
+import { withBase } from "../lib/paths";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const items = homePublications();
+---
+
+<section class="section band-sand" id={copy.pubs.id} aria-labelledby="pubs-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" style="color: var(--wetland)">{copy.pubs.kicker}</p>
+      <h2 id="pubs-title">{copy.pubs.title}</h2>
+      <p>{copy.pubs.intro}</p>
+    </div>
+    <div class="pub-grid">
+      {
+        items.map((paper) => (
+          <article class="pub-card">
+            <p class="meta-line">
+              {paper.year} · {paper.journal}
+            </p>
+            <h3 style="margin:0 0 0.45rem; color: var(--navy); font-size: 1.05rem">{paper.title}</h3>
+            <p class="authors">{formatAuthors(paper.authors, copy.lang)}</p>
+            {paper.doi ? (
+              <a href={doiUrl(paper.doi)} rel="noopener noreferrer">
+                {copy.pubs.doi}:{paper.doi}
+              </a>
+            ) : (
+              <span>{copy.pubs.sourceNote}</span>
+            )}
+          </article>
+        ))
+      }
+    </div>
+    <p style="margin: 1.5rem 0 0">
+      <a class="btn btn-primary" href={withBase(copy.publicationsHref)} style="background: var(--navy); color: var(--paper)">
+        {copy.pubs.viewAll}
+      </a>
+    </p>
+  </div>
+</section>

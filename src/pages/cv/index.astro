@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCopy } from "../../data/i18n";
+import { withBase } from "../../lib/paths";
+
+const copy = getCopy("en");
+---
+
+<BaseLayout
+  copy={copy}
+  canonicalPath="/cv/"
+  title={`${copy.cvPage.title} · Kunpeng Yi`}
+  description={copy.cvPage.body}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker" style="color: var(--wetland)">CV</p>
+      <h1>{copy.cvPage.title}</h1>
+      <p>{copy.cvPage.body}</p>
+      <p>
+        <a class="btn btn-primary" href={withBase("/cv/kunpeng-yi-cv-placeholder.pdf")} download>
+          {copy.hero.cv}
+        </a>
+      </p>
+      <p><a href={withBase("/")}>{copy.cvPage.back}</a></p>
+    </div>
+  </section>
+</BaseLayout>
