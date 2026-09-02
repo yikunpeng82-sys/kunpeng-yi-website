@@ -1,8 +1,7 @@
 ---
 import type { Copy } from "../data/i18n";
 import {
-  byYearDesc,
-  publications,
+  groupedByYear,
   formatAuthors,
   doiUrl,
   FILTERS,
@@ -14,7 +13,7 @@ interface Props {
 }
 
 const { copy } = Astro.props;
-const items = byYearDesc(publications);
+const groups = groupedByYear();
 ---
 
 <div>
@@ -30,44 +29,53 @@ const items = byYearDesc(publications);
   </div>
   <div class="pub-list" data-pub-list>
     {
-      items.map((paper) => (
-        <article class="pub-card" data-filters={paper.filters.join(" ")}>
-          <p class="meta-line">
-            {paper.year} · {paper.journal}
-            {paper.volume ? `, ${paper.volume}` : ""}
-            {paper.issue ? `(${paper.issue})` : ""}
-            {paper.pages ? `: ${paper.pages}` : ""}
-          </p>
-          <h2 style="margin:0 0 0.45rem; font-size:1.15rem; color:var(--navy)">{paper.title}</h2>
-          <p class="authors">{formatAuthors(paper.authors, copy.lang)}</p>
-          <p>{paper.summary[copy.lang]}</p>
-          <div class="tags">
-            {paper.filters.map((id) => (
-              <span class="tag">{FILTER_LABELS[id][copy.lang]}</span>
-            ))}
-          </div>
-          <p style="margin:0.8rem 0 0">
-            {paper.doi ? (
-              <a href={doiUrl(paper.doi)} rel="noopener noreferrer">
-                {copy.pubs.doi}:{paper.doi}
-              </a>
-            ) : (
-              <span>
-                {copy.pubs.sourceNote}
-                {paper.note ? ` — ${paper.note}` : ""}
-              </span>
-            )}
-          </p>
-        </article>
+      groups.map((group) => (
+        <section class="year-group" data-year-group>
+          <h2 class="year-heading">
+            <span class="visually-hidden">{copy.pubs.yearHeading} </span>
+            {group.year}
+          </h2>
+          {group.papers.map((paper) => (
+            <article class="pub-card" data-filters={paper.filters.join(" ")}>
+              <p class="meta-line">
+                {paper.year} · {paper.journal}
+                {paper.volume ? `, ${paper.volume}` : ""}
+                {paper.issue ? `(${paper.issue})` : ""}
+                {paper.pages ? `: ${paper.pages}` : ""}
+              </p>
+              <h3 class="pub-title">{paper.title}</h3>
+              <p class="authors">{formatAuthors(paper.authors, copy.lang)}</p>
+              <p>{paper.summary[copy.lang]}</p>
+              <div class="tags">
+                {paper.filters.map((id) => (
+                  <span class="tag">{FILTER_LABELS[id][copy.lang]}</span>
+                ))}
+              </div>
+              <p class="doi-line">
+                {paper.doi ? (
+                  <a href={doiUrl(paper.doi)} target="_blank" rel="noopener noreferrer">
+                    {copy.pubs.doi}:{paper.doi}
+                  </a>
+                ) : (
+                  <span>
+                    {copy.pubs.sourceNote}
+                    {paper.note ? ` — ${paper.note}` : ""}
+                  </span>
+                )}
+              </p>
+            </article>
+          ))}
+        </section>
       ))
     }
   </div>
-  <p class="about-note" data-empty hidden>{copy.pubs.empty}</p>
+  <p class="about-note empty-state" data-empty hidden>{copy.pubs.empty}</p>
 </div>
 
 <script>
   const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>(".filter-btn"));
   const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-pub-list] [data-filters]"));
+  const groups = Array.from(document.querySelectorAll<HTMLElement>("[data-year-group]"));
   const empty = document.querySelector<HTMLElement>("[data-empty]");
 
   function apply(filter: string) {
@@ -77,6 +85,12 @@ const items = byYearDesc(publications);
       const show = filter === "all" || tags.includes(filter);
       card.hidden = !show;
       if (show) visible += 1;
+    }
+    for (const group of groups) {
+      const anyVisible = Array.from(group.querySelectorAll<HTMLElement>("[data-filters]")).some(
+        (card) => !card.hidden,
+      );
+      group.hidden = !anyVisible;
     }
     if (empty) empty.hidden = visible > 0;
     for (const button of buttons) {

@@ -1,4 +1,7 @@
 ---
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/inter/latin-700.css";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -23,6 +26,9 @@ const alternates = alternatePaths(canonicalPath);
 const alternateEn = new URL(withBase(alternates.en), origin).href;
 const alternateZh = new URL(withBase(alternates.zh), origin).href;
 
+const ogImage = new URL(withBase(SITE.ogImage), origin).href;
+const portraitUrl = new URL(withBase(SITE.portrait), origin).href;
+
 const personLd = jsonLd ?? {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -31,6 +37,7 @@ const personLd = jsonLd ?? {
   jobTitle: SITE.titleEn,
   email: `mailto:${SITE.email}`,
   url: canonical,
+  image: portraitUrl,
   affiliation: {
     "@type": "Organization",
     name: SITE.orgEn,
@@ -58,16 +65,18 @@ const personLd = jsonLd ?? {
     <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={copy.meta.ogLocale} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={SITE.photoAlt} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={SITE.photoAlt} />
+    <meta name="theme-color" content="#0b1f33" />
     <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(personLd)} />
   </head>
   <body>

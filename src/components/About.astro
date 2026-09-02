@@ -1,5 +1,7 @@
 ---
 import type { Copy } from "../data/i18n";
+import { SITE } from "../data/site";
+import { withBase } from "../lib/paths";
 
 interface Props {
   copy: Copy;
@@ -17,8 +19,17 @@ const { copy } = Astro.props;
       {copy.about.body.map((para) => <p>{para}</p>)}
       <p class="about-note">{copy.about.nameNote}</p>
     </div>
-    <aside>
-      <h3 style="margin-top:2.1rem; color: var(--navy)">{copy.about.timelineTitle}</h3>
+    <aside class="about-side">
+      <figure class="about-photo">
+        <img
+          src={withBase(SITE.portrait)}
+          alt={SITE.photoAlt}
+          width="480"
+          height="600"
+          decoding="async"
+        />
+      </figure>
+      <h3>{copy.about.timelineTitle}</h3>
       <ol class="timeline">
         {
           copy.about.timeline.map((item) => (

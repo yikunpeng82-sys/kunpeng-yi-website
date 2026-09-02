@@ -5,7 +5,7 @@ Confirmed public records used for this site come from Crossref, the RCEES facult
 ## Identity and documents
 
 - [ ] Official bilingual CV PDF to replace `public/cv/kunpeng-yi-cv-placeholder.pdf` and the `/cv/` placeholder page
-- [ ] Preferred public portrait (rights-cleared; no publisher or third-party hotlinks)
+- [x] Preferred public portrait (rights-cleared; no publisher or third-party hotlinks) — `public/images/kunpeng-yi-portrait.jpg`
 - [ ] Written confirmation of the public Chinese name to use on letterhead: **易昆鹏** (this site) versus **伊坤朋** (CAS / UCAS / laboratory pages)
 
 ## Persistent researcher IDs
@@ -24,7 +24,7 @@ When IDs are confirmed, add them to `src/data/site.ts` (`SOCIAL_PLACEHOLDERS`) a
 - [ ] Laboratory or RCEES mark, if branding permission is granted
 - [ ] Rights-cleared field photographs of study systems (Miyun, Baiyangdian, Poyang, tracking fieldwork). Do **not** hotlink publisher figures
 - [ ] Higher-resolution crane silhouette only if it remains clearly **conceptual** and is not presented as a scientific map
-- [ ] Open Graph share image (`1200×630`) once a portrait or conceptual still is approved
+- [x] Open Graph share image (`1200×630`) — official crop at `public/images/og-kunpeng-yi.jpg` (conceptual SVG retained at `public/og/share.svg`)
 
 ## Publications maintenance
 

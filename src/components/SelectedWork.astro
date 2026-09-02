@@ -35,7 +35,7 @@ const items = selectedPublications();
             </div>
             <p style="margin: 0.9rem 0 0">
               {paper.doi ? (
-                <a href={doiUrl(paper.doi)} rel="noopener noreferrer">
+                <a href={doiUrl(paper.doi)} target="_blank" rel="noopener noreferrer">
                   {copy.selected.read}: {paper.doi}
                 </a>
               ) : (

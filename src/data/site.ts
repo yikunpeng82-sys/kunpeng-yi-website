@@ -21,6 +21,9 @@ export const SITE = {
   positioningZh: "运动生态学 × 地球观测 × 生物多样性保护",
   heroLineEn: "From satellite pixels to migratory pathways",
   heroLineZh: "从卫星像元到候鸟迁徙路径",
+  portrait: "/images/kunpeng-yi-portrait.jpg",
+  ogImage: "/images/og-kunpeng-yi.jpg",
+  photoAlt: "Kunpeng Yi / 易昆鹏, Associate Professor, RCEES, CAS",
 } as const;
 
 export const SOCIAL_PLACEHOLDERS = {

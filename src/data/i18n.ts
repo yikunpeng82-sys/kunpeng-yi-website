@@ -19,6 +19,7 @@ export interface Copy {
   openMenu: string;
   closeMenu: string;
   langToggle: string;
+  langToggleAria: string;
   langToggleHref: string;
   homeHref: string;
   publicationsHref: string;
@@ -41,6 +42,8 @@ export interface Copy {
     selected: string;
     cv: string;
     cvNote: string;
+    vizCaption: string;
+    vizPixelLabel: string;
   };
   research: {
     id: string;
@@ -83,6 +86,7 @@ export interface Copy {
     empty: string;
     doi: string;
     sourceNote: string;
+    yearHeading: string;
     filters: Record<FilterId, string>;
   };
   about: {
@@ -149,6 +153,7 @@ export const en: Copy = {
   openMenu: "Open menu",
   closeMenu: "Close menu",
   langToggle: "中文",
+  langToggleAria: "Switch to Chinese",
   langToggleHref: "/zh/",
   homeHref: "/",
   publicationsHref: "/publications/",
@@ -178,6 +183,9 @@ export const en: Copy = {
     selected: "Selected Publications",
     cv: "Download CV",
     cvNote: "CV PDF is a placeholder until an official file is supplied.",
+    vizCaption:
+      "Conceptual visualization — East Asian–Australasian Flyway outline, GPS tracks and stopovers, wetland pixels, turbine silhouettes and a white-naped crane silhouette. Not observational map data.",
+    vizPixelLabel: "wetland pixels",
   },
   research: {
     id: "research",
@@ -278,19 +286,20 @@ export const en: Copy = {
     empty: "No papers in this filter.",
     doi: "doi",
     sourceNote: "Unverified DOI",
+    yearHeading: "Year",
     filters,
   },
   about: {
     id: "about",
     kicker: "About",
-    title: "Kunpeng Yi / 易昆鹏",
+    title: "Kunpeng Yi",
     lead: `${SITE.titleEn} at the ${SITE.orgEn}, based in the ${SITE.labEn}.`,
     body: [
       "I combine animal tracking, Earth observation and geospatial intelligence to understand how migratory birds navigate rapidly changing wetlands, river basins and energy landscapes—and translate that evidence into conservation and spatial planning.",
-      "Doctoral training in remote sensing was completed at Hokkaido University, followed by postdoctoral research at the Chinese Academy of Sciences. Current teaching and supervision sit in movement ecology, wetland monitoring and ecosystem remote sensing through the University of Chinese Academy of Sciences.",
+      "Doctoral training in remote sensing was completed at Hokkaido University, followed by postdoctoral research at the Chinese Academy of Sciences.",
     ],
     nameNote:
-      "Chinese name used on this site: 易昆鹏. Institutional CAS / UCAS / laboratory pages have also listed 伊坤朋.",
+      "Display name: 易昆鹏. CAS, UCAS and laboratory pages list 伊坤朋.",
     timelineTitle: "Compact timeline",
     timeline: [
       {
@@ -312,7 +321,7 @@ export const en: Copy = {
     kicker: "Collaborate",
     title: "Research first, then people",
     intro:
-      "This page lists research collaboration and training only. It does not advertise jobs, products or consultancy retainers.",
+      "This page lists research collaboration only. It does not advertise jobs, products or consultancy retainers.",
     cards: [
       {
         title: "Research collaboration",
@@ -320,7 +329,7 @@ export const en: Copy = {
       },
       {
         title: "Prospective students",
-        body: "Master’s supervision is offered through UCAS / RCEES in ecology, natural resources and GIScience. Typical topics include migratory-animal monitoring and protection, wetland monitoring and ecological restoration, and remote-sensing assessment of ecosystems.",
+        body: "Prospective students may write to the institutional email. No open positions are advertised on this site.",
       },
     ],
   },
@@ -364,6 +373,7 @@ export const zh: Copy = {
   openMenu: "打开菜单",
   closeMenu: "关闭菜单",
   langToggle: "EN",
+  langToggleAria: "切换到英文",
   langToggleHref: "/",
   homeHref: "/zh/",
   publicationsHref: "/zh/publications/",
@@ -393,6 +403,9 @@ export const zh: Copy = {
     selected: "代表论文",
     cv: "下载简历",
     cvNote: "简历 PDF 为占位文件，待提供正式版本后替换。",
+    vizCaption:
+      "概念示意 — 东亚—澳大利西亚迁飞区轮廓、GPS 轨迹与停歇地、湿地像元、风机剪影与白枕鹤剪影。并非观测地图数据。",
+    vizPixelLabel: "湿地像元",
   },
   research: {
     id: "research",
@@ -476,19 +489,19 @@ export const zh: Copy = {
     empty: "该分类下暂无条目。",
     doi: "doi",
     sourceNote: "DOI 未核验",
+    yearHeading: "年份",
     filters: filtersZh,
   },
   about: {
     id: "about",
     kicker: "简介",
-    title: "易昆鹏 / Kunpeng Yi",
+    title: "易昆鹏",
     lead: `${SITE.orgZh}${SITE.titleZh}，任职于${SITE.labZh}。`,
     body: [
       "融合动物追踪、卫星遥感与地理空间智能，研究候鸟如何响应快速变化的湿地、流域与能源景观，并将科学证据转化为保护与空间规划行动。",
-      "于北海道大学获得遥感科学博士学位，随后在中国科学院完成博士后研究。目前通过中国科学院大学在运动生态学、湿地监测与生态系统遥感方向开展教学与指导。",
+      "于北海道大学获得遥感科学博士学位，随后在中国科学院完成博士后研究。",
     ],
-    nameNote:
-      "本站中文名：易昆鹏。中国科学院、国科大及实验室机构页面亦见「伊坤朋」。",
+    nameNote: "本站中文名：易昆鹏。中国科学院、国科大及实验室页面写作伊坤朋。",
     timelineTitle: "简要经历",
     timeline: [
       {
@@ -509,7 +522,7 @@ export const zh: Copy = {
     id: "collaborate",
     kicker: "合作",
     title: "先研究，后人事",
-    intro: "本页只列研究合作与学生培养，不发布岗位、产品或顾问聘任。",
+    intro: "本页只列研究合作，不发布岗位、产品或顾问聘任。",
     cards: [
       {
         title: "研究合作",
@@ -517,7 +530,7 @@ export const zh: Copy = {
       },
       {
         title: "意向学生",
-        body: "通过国科大 / 生态环境研究中心在生态学、自然资源学、地图学与地理信息系统方向招收硕士。常见题目包括迁徙动物监测与保护、湿地监测与生态修复、生态系统遥感监测与评估。",
+        body: "意向学生可写信至机构邮箱。本站不发布在招岗位。",
       },
     ],
   },

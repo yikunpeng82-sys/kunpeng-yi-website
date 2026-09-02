@@ -4,15 +4,15 @@
   --navy-ink: #13283d;
   --wetland: #1c4a3c;
   --wetland-mid: #2a6b56;
-  --teal: #2f8f86;
+  --teal: #1f6b64;
   --teal-bright: #3aa89d;
   --sand: #e6d7b8;
-  --sand-dim: #c9b892;
+  --sand-dim: #e0d2b4;
   --paper: #f6f1e6;
   --paper-2: #efe6d4;
-  --orange: #d36b2e;
+  --orange: #c45a1f;
   --ink: #12202b;
-  --muted: #4d5d68;
+  --muted: #3a4650;
   --line: rgba(19, 40, 61, 0.12);
   --focus: #d36b2e;
   --radius: 14px;
@@ -48,6 +48,11 @@ html:focus-within {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+html,
+body {
+  overflow-x: clip;
 }
 
 body {
@@ -118,10 +123,26 @@ a:hover {
 
 .brand {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.65rem;
   text-decoration: none;
   color: var(--navy);
   min-width: 10rem;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
 }
 
 .brand-name {
@@ -215,6 +236,23 @@ a:hover {
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--sand);
+}
+
+.hero-identity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 0.75rem;
+}
+
+.hero-portrait {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid rgba(230, 215, 184, 0.45);
+  flex-shrink: 0;
 }
 
 .hero h1 {
@@ -464,6 +502,25 @@ a:hover {
   gap: 2rem;
 }
 
+.about-side h3 {
+  margin: 1.4rem 0 0.7rem;
+  color: var(--navy);
+}
+
+.about-photo {
+  margin: 0;
+}
+
+.about-photo img {
+  width: 100%;
+  height: auto;
+  max-width: 22rem;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--line);
+}
+
 .about-note {
   font-size: 0.92rem;
   color: var(--muted);
@@ -533,7 +590,44 @@ a:hover {
 
 .pub-list {
   display: grid;
+  gap: 1.6rem;
+}
+
+.year-group {
+  display: grid;
   gap: 0.9rem;
+}
+
+.year-heading {
+  margin: 0.4rem 0 0;
+  font-size: 1.35rem;
+  color: var(--navy);
+}
+
+.pub-title {
+  margin: 0 0 0.45rem;
+  font-size: 1.15rem;
+  color: var(--navy);
+}
+
+.doi-line {
+  margin: 0.8rem 0 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.empty-state {
+  margin-top: 1rem;
 }
 
 .page-hero {
@@ -548,7 +642,8 @@ a:hover {
 
 .viz {
   position: relative;
-  min-height: 22rem;
+  min-height: 0;
+  max-width: 100%;
 }
 
 .viz-frame {
@@ -556,6 +651,13 @@ a:hover {
   border: 1px solid rgba(230, 215, 184, 0.2);
   border-radius: 20px;
   overflow: hidden;
+  max-width: 100%;
+}
+
+.viz-frame svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .viz-caption {
@@ -586,6 +688,25 @@ a:hover {
   .collab-grid,
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .hero-grid,
+  .hero {
+    padding-inline: 0;
+  }
+
+  .hero-grid {
+    padding: 2.4rem 0 2rem;
+    gap: 1.4rem;
+  }
+
+  .hero-portrait {
+    width: 80px;
+    height: 80px;
   }
 
   .menu-btn {

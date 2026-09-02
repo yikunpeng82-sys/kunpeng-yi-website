@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img">
+  <title>Conceptual share image - Kunpeng Yi</title>
+  <defs>
+    <linearGradient id="og-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#071524"/>
+      <stop offset="55%" stop-color="#0b1f33"/>
+      <stop offset="100%" stop-color="#1c4a3c"/>
+    </linearGradient>
+    <pattern id="og-pixels" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="15" height="15" fill="#2a6b56" opacity="0.38"/>
+      <rect x="5" y="5" width="6" height="6" fill="#3aa89d" opacity="0.55"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#og-sky)"/>
+  <text x="56" y="64" fill="#e6d7b8" font-size="22" font-family="sans-serif" font-weight="700" letter-spacing="2">CONCEPTUAL · 概念示意</text>
+  <text x="56" y="150" fill="#f6f1e6" font-size="52" font-family="sans-serif" font-weight="700">Kunpeng Yi · 易昆鹏</text>
+  <text x="56" y="210" fill="#e6d7b8" font-size="26" font-family="sans-serif">From satellite pixels to migratory pathways</text>
+  <text x="56" y="250" fill="#e6d7b8" font-size="24" font-family="sans-serif">从卫星像元到候鸟迁徙路径</text>
+  <text x="56" y="304" fill="#d8c9a8" font-size="20" font-family="sans-serif">Associate Professor / 副研究员 · RCEES, CAS</text>
+  <path d="M780 70 C 860 150, 900 240, 860 330 S 720 500, 650 590" fill="none" stroke="#e6d7b8" stroke-width="28" stroke-linecap="round" opacity="0.16"/>
+  <path d="M760 90 C 830 165, 862 245, 830 330 S 700 490, 640 575" fill="none" stroke="#3aa89d" stroke-width="4" stroke-dasharray="12 12" stroke-linecap="round"/>
+  <g fill="#d36b2e">
+    <circle cx="768" cy="118" r="8"/>
+    <circle cx="848" cy="250" r="8"/>
+    <circle cx="768" cy="380" r="8"/>
+    <circle cx="668" cy="540" r="8"/>
+  </g>
+  <g transform="translate(56 400)">
+    <rect width="240" height="150" fill="url(#og-pixels)" rx="10"/>
+    <rect width="240" height="150" fill="none" stroke="#e6d7b8" stroke-opacity="0.35" rx="10"/>
+    <text x="14" y="24" fill="#e6d7b8" font-size="15" font-family="sans-serif">wetland pixels / 湿地像元</text>
+  </g>
+  <g fill="#e6d7b8" opacity="0.8" transform="translate(330 430)">
+    <rect x="24" y="48" width="4" height="72"/>
+    <path d="M26 48 L68 30 L30 56 Z"/>
+    <path d="M26 48 L4 6 L22 54 Z"/>
+    <path d="M26 48 L-10 78 L32 58 Z"/>
+    <g transform="translate(70 10)">
+      <rect x="24" y="48" width="4" height="58"/>
+      <path d="M26 48 L62 32 L30 56 Z"/>
+      <path d="M26 48 L8 12 L22 54 Z"/>
+      <path d="M26 48 L-4 80 L32 58 Z"/>
+    </g>
+  </g>
+  <g fill="#f6f1e6" transform="translate(980 380)">
+    <path d="M16 100 C 38 90, 70 80, 94 62 C 110 52, 116 36, 104 28 C 120 22, 132 10, 124 2 C 116 12, 100 20, 86 28 C 64 22, 38 36, 24 54 C 10 72, 6 90, 16 100 Z"/>
+    <path d="M104 28 L140 10" stroke="#f6f1e6" stroke-width="3" fill="none"/>
+    <circle cx="128" cy="8" r="3"/>
+  </g>
+</svg>

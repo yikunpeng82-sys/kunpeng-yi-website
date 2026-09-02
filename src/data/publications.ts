@@ -619,3 +619,15 @@ export function filterPublications(filter: FilterId | "all"): Publication[] {
   if (filter === "all") return list;
   return list.filter((p) => p.filters.includes(filter));
 }
+
+export function groupedByYear(
+  items: Publication[] = publications,
+): Array<{ year: number; papers: Publication[] }> {
+  const groups = new Map<number, Publication[]>();
+  for (const paper of byYearDesc(items)) {
+    const list = groups.get(paper.year) ?? [];
+    list.push(paper);
+    groups.set(paper.year, list);
+  }
+  return [...groups.entries()].map(([year, papers]) => ({ year, papers }));
+}
