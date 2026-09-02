@@ -55,7 +55,8 @@ Preview deploy (no custom domain):
 1. Keep `site: https://yikunpeng82-sys.github.io` and `base: /kunpeng-yi-website/` in `astro.config.ts` (or set `SITE_URL` / `BASE_PATH` in the workflow).
 2. Push to `main` or `cursor/academic-website-cf12`. The workflow runs `npm ci && npm run build` and uploads `dist/`.
 3. Set **Settings → Pages → Source** to **GitHub Actions** if it is not already.
-4. Open https://yikunpeng82-sys.github.io/kunpeng-yi-website/
+4. If a deploy from `cursor/academic-website-cf12` is rejected, open **Settings → Environments → github-pages** and add that branch under **Deployment branches** (the environment currently allows `main` only).
+5. Open https://yikunpeng82-sys.github.io/kunpeng-yi-website/
 
 To use a user/organization site or a custom domain later, set `BASE_PATH=/` and change `SITE_URL`. That is not this preview.
 
