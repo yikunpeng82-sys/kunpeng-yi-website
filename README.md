@@ -1,6 +1,6 @@
-# Kunpeng Yi / 易昆鹏
+# Kunpeng Yi / 伊坤朋
 
-Statically generated academic website for Associate Professor Kunpeng Yi (易昆鹏; institutional pages also list 伊坤朋), Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences / 中国科学院生态环境研究中心.
+Statically generated academic website for Associate Professor Kunpeng Yi (伊坤朋), Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences / 中国科学院生态环境研究中心.
 
 ## GitHub Pages
 

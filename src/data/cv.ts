@@ -122,7 +122,6 @@ export const CV_HOSTED_PROJECTS = {
 export const CV_IDENTITY = {
   nameEn: SITE.nameEn,
   nameZh: SITE.nameZh,
-  nameZhSource: SITE.nameZhVariant,
   degree: "Ph.D.",
   positionEn: `${SITE.titleEn}, ${SITE.orgEn}`,
   positionZh: `${SITE.orgZh}${SITE.titleZh}`,

@@ -1,8 +1,7 @@
 export const SITE = {
   nameEn: "Kunpeng Yi",
   nameEnPage: "YI KUNPENG",
-  nameZh: "易昆鹏",
-  nameZhVariant: "伊坤朋",
+  nameZh: "伊坤朋",
   titleEn: "Associate Professor",
   titleZh: "副研究员",
   orgEn:
@@ -32,7 +31,7 @@ export const SITE = {
   heroLineZh: "从卫星像元到候鸟迁徙路径",
   portrait: "/images/kunpeng-yi-portrait.jpg",
   ogImage: "/images/og-kunpeng-yi.jpg",
-  photoAlt: "Kunpeng Yi / 易昆鹏, Associate Professor, RCEES, CAS",
+  photoAlt: "Kunpeng Yi / 伊坤朋, Associate Professor, RCEES, CAS",
   cvEn: "/cv/kunpeng-yi-cv-en.pdf",
   cvZh: "/cv/kunpeng-yi-cv-zh.pdf",
 } as const;

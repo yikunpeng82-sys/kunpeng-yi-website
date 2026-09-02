@@ -609,7 +609,7 @@ export function doiUrl(doi: string): string {
 
 export function formatAuthors(authors: string[], locale: Locale): string {
   const marked = authors.map((name) =>
-    name === "Kunpeng Yi" ? (locale === "zh" ? "易昆鹏" : "Kunpeng Yi") : name,
+    name === "Kunpeng Yi" ? (locale === "zh" ? "伊坤朋" : "Kunpeng Yi") : name,
   );
   return marked.join(", ");
 }

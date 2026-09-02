@@ -135,7 +135,7 @@ def styles_en():
             textColor=NAVY, alignment=TA_LEFT, spaceAfter=2 * mm, leading=22,
         ),
         "sub": ParagraphStyle(
-            "S", parent=base["Normal"], fontName="LibSerif", fontSize=10,
+            "S", parent=base["Normal"], fontName="WQY", fontSize=10,
             textColor=WETLAND, spaceAfter=6 * mm, leading=14,
         ),
         "h": ParagraphStyle(
@@ -209,8 +209,8 @@ def bullets(items: list[str], style: ParagraphStyle) -> ListFlowable:
 def footer(canvas, doc):
     canvas.saveState()
     canvas.setFillColor(MUTED)
-    canvas.setFont("LibSerif", 8)
-    canvas.drawString(18 * mm, 12 * mm, "Kunpeng Yi / 易昆鹏 — academic CV")
+    canvas.setFont("WQY", 8)
+    canvas.drawString(18 * mm, 12 * mm, "Kunpeng Yi / 伊坤朋 — academic CV")
     canvas.drawRightString(A4[0] - 18 * mm, 12 * mm, f"{doc.page}")
     canvas.restoreState()
 
@@ -219,9 +219,9 @@ def build_en_pdf(path: Path) -> None:
     s = styles_en()
     story = [
         Paragraph("Curriculum Vitae", s["title"]),
-        Paragraph("Kunpeng Yi / 易昆鹏", s["sub"]),
+        Paragraph("Kunpeng Yi / 伊坤朋", s["sub"]),
         Paragraph("Personal Information", s["h"]),
-        Paragraph("<b>Name:</b> Kunpeng Yi", s["meta"]),
+        Paragraph("<b>Name:</b> Kunpeng Yi / 伊坤朋", s["sub"]),
         Paragraph("<b>Degree:</b> Ph.D.", s["meta"]),
         Paragraph(
             "<b>Position:</b> Associate Professor, Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences",
@@ -266,15 +266,11 @@ def build_zh_pdf(path: Path) -> None:
     s = styles_zh()
     story = [
         Paragraph("个人简介", s["title"]),
-        Paragraph("易昆鹏（Kunpeng Yi）", s["sub"]),
+        Paragraph("伊坤朋（Kunpeng Yi）", s["sub"]),
         Paragraph("身份", s["h"]),
-        Paragraph("姓名（本站）：易昆鹏", s["meta"]),
+        Paragraph("姓名：伊坤朋", s["meta"]),
         Paragraph("学位：博士", s["meta"]),
         Paragraph("职务：中国科学院生态环境研究中心副研究员", s["meta"]),
-        Paragraph(
-            "本简介原文及部分中国科学院、国科大、实验室页面写作伊坤朋。本站对外中文名保持易昆鹏。",
-            s["body"],
-        ),
         Paragraph("学历与任职", s["h"]),
         bullets(TIMELINE_ZH, s["item"]),
         Paragraph("研究概述", s["h"]),
@@ -297,8 +293,8 @@ def build_zh_pdf(path: Path) -> None:
         str(path), pagesize=A4,
         leftMargin=18 * mm, rightMargin=18 * mm,
         topMargin=16 * mm, bottomMargin=18 * mm,
-        title="个人简介 — 易昆鹏",
-        author="易昆鹏",
+        title="个人简介 — 伊坤朋",
+        author="伊坤朋",
     )
     doc.build(story, onFirstPage=footer, onLaterPages=footer)
 
@@ -315,7 +311,7 @@ def build_en_docx(path: Path) -> None:
     doc = Document()
     title = doc.add_paragraph()
     title.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    run = title.add_run("Curriculum Vitae — Kunpeng Yi / 易昆鹏")
+    run = title.add_run("Curriculum Vitae — Kunpeng Yi / 伊坤朋")
     run.bold = True
     run.font.size = Pt(18)
     add_heading(doc, "Personal Information")
@@ -356,14 +352,13 @@ def build_en_docx(path: Path) -> None:
 def build_zh_docx(path: Path) -> None:
     doc = Document()
     title = doc.add_paragraph()
-    run = title.add_run("个人简介 — 易昆鹏（Kunpeng Yi）")
+    run = title.add_run("个人简介 — 伊坤朋（Kunpeng Yi）")
     run.bold = True
     run.font.size = Pt(18)
     add_heading(doc, "身份")
-    doc.add_paragraph("姓名（本站）：易昆鹏")
+    doc.add_paragraph("姓名：伊坤朋")
     doc.add_paragraph("学位：博士")
     doc.add_paragraph("职务：中国科学院生态环境研究中心副研究员")
-    doc.add_paragraph("本简介原文及部分中国科学院、国科大、实验室页面写作伊坤朋。本站对外中文名保持易昆鹏。")
     add_heading(doc, "学历与任职")
     for item in TIMELINE_ZH:
         doc.add_paragraph(item, style="List Bullet")

@@ -6,7 +6,7 @@ Confirmed public records used for this site come from Crossref, the RCEES facult
 
 - [x] Official bilingual CV — `public/cv/kunpeng-yi-cv-en.pdf` and `public/cv/kunpeng-yi-cv-zh.pdf` (optional `.docx` alongside). Reconstructed from the author-supplied documents; website UI omits gender, place of birth, private phone and home address.
 - [x] Preferred public portrait (rights-cleared; no publisher or third-party hotlinks) — `public/images/kunpeng-yi-portrait.jpg`
-- [ ] Written confirmation of the public Chinese name to use on letterhead: **易昆鹏** (this site) versus **伊坤朋** (CAS / UCAS / laboratory pages)
+- [x] Public Chinese name on this site: **伊坤朋** (matches the RCEES faculty page `xm=伊坤朋`). English: Kunpeng Yi / YI KUNPENG.
 
 ## Persistent researcher IDs
 
