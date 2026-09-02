@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCopy } from "../data/i18n";
+import { withBase } from "../lib/paths";
+
+const copy = getCopy("en");
+---
+
+<BaseLayout copy={copy} canonicalPath="/404/" title="404 · Kunpeng Yi">
+  <div class="not-found">
+    <div>
+      <p class="kicker" style="color: var(--wetland)">404</p>
+      <h1>{copy.notFound.title}</h1>
+      <p>{copy.notFound.body}</p>
+      <p>
+        <a href={withBase("/")}>{copy.notFound.home}</a>
+        ·
+        <a href={withBase("/zh/")}>{copy.notFound.homeOther}</a>
+      </p>
+    </div>
+  </div>
+</BaseLayout>

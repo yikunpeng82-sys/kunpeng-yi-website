@@ -1,0 +1,65 @@
+---
+import type { Copy } from "../data/i18n";
+import { SITE } from "../data/site";
+import { alternatePaths, logicalPath, withBase } from "../lib/paths";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const current = logicalPath(Astro.url.pathname);
+const toggleHref = copy.lang === "en" ? alternatePaths(current).zh : alternatePaths(current).en;
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href={withBase(copy.homeHref)}>
+      <span class="brand-name">{copy.lang === "zh" ? SITE.nameZh : SITE.nameEn}</span>
+      <span class="brand-meta">{copy.lang === "zh" ? SITE.orgShortZh : SITE.orgShortEn}</span>
+    </a>
+    <nav class="nav" id="primary-nav" aria-label={copy.navLabel}>
+      {
+        copy.nav.map((item) => {
+          const currentPage =
+            item.id === "publications" && current.includes("/publications/");
+          return (
+            <a href={withBase(item.href)} aria-current={currentPage ? "page" : undefined}>
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+    <div class="header-tools">
+      <a class="lang-toggle" href={withBase(toggleHref)} hreflang={copy.lang === "en" ? "zh-CN" : "en"}>
+        {copy.langToggle}
+      </a>
+      <button
+        class="menu-btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        data-menu-toggle
+        data-open-label={copy.openMenu}
+        data-close-label={copy.closeMenu}
+      >
+        {copy.openMenu}
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const nav = document.getElementById("primary-nav");
+  if (button && nav) {
+    const openLabel = button.dataset.openLabel ?? "Menu";
+    const closeLabel = button.dataset.closeLabel ?? "Close";
+    button.addEventListener("click", () => {
+      const open = nav.classList.toggle("is-open");
+      button.setAttribute("aria-expanded", String(open));
+      button.textContent = open ? closeLabel : openLabel;
+    });
+  }
+</script>

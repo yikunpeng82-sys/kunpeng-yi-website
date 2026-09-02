@@ -1,0 +1,39 @@
+---
+import type { Copy } from "../data/i18n";
+import { SITE } from "../data/site";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+---
+
+<section class="section" id={copy.contact.id} aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" style="color: var(--wetland)">{copy.contact.kicker}</p>
+      <h2 id="contact-title">{copy.contact.title}</h2>
+      <p>{copy.contact.intro}</p>
+    </div>
+    <div class="contact-grid">
+      <article class="contact-card">
+        <h3 style="margin:0 0 0.4rem; color: var(--navy)">{copy.contact.email}</h3>
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </article>
+      <article class="contact-card">
+        <h3 style="margin:0 0 0.4rem; color: var(--navy)">{copy.contact.scholar}</h3>
+        <a href={SITE.scholarUrl} rel="noopener noreferrer">scholar.google.com</a>
+      </article>
+      <article class="contact-card">
+        <h3 style="margin:0 0 0.4rem; color: var(--navy)">{copy.contact.cas}</h3>
+        <a href={SITE.casUrl} rel="noopener noreferrer">rcees.cas.cn</a>
+      </article>
+      <article class="contact-card">
+        <h3 style="margin:0 0 0.4rem; color: var(--navy)">{copy.contact.labProfile}</h3>
+        <a href={SITE.labProfileUrl} rel="noopener noreferrer">dse.rcees.cas.cn</a>
+      </article>
+    </div>
+    <p class="about-note" style="margin-top:1.2rem">{copy.contact.placeholders}</p>
+  </div>
+</section>

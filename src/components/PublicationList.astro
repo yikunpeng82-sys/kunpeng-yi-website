@@ -1,0 +1,90 @@
+---
+import type { Copy } from "../data/i18n";
+import {
+  byYearDesc,
+  publications,
+  formatAuthors,
+  doiUrl,
+  FILTERS,
+  FILTER_LABELS,
+} from "../data/publications";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const items = byYearDesc(publications);
+---
+
+<div>
+  <div class="filters" role="group" aria-label={copy.pubs.filterLabel}>
+    <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">{copy.pubs.filterAll}</button>
+    {
+      FILTERS.map((id) => (
+        <button class="filter-btn" type="button" data-filter={id} aria-pressed="false">
+          {copy.pubs.filters[id]}
+        </button>
+      ))
+    }
+  </div>
+  <div class="pub-list" data-pub-list>
+    {
+      items.map((paper) => (
+        <article class="pub-card" data-filters={paper.filters.join(" ")}>
+          <p class="meta-line">
+            {paper.year} · {paper.journal}
+            {paper.volume ? `, ${paper.volume}` : ""}
+            {paper.issue ? `(${paper.issue})` : ""}
+            {paper.pages ? `: ${paper.pages}` : ""}
+          </p>
+          <h2 style="margin:0 0 0.45rem; font-size:1.15rem; color:var(--navy)">{paper.title}</h2>
+          <p class="authors">{formatAuthors(paper.authors, copy.lang)}</p>
+          <p>{paper.summary[copy.lang]}</p>
+          <div class="tags">
+            {paper.filters.map((id) => (
+              <span class="tag">{FILTER_LABELS[id][copy.lang]}</span>
+            ))}
+          </div>
+          <p style="margin:0.8rem 0 0">
+            {paper.doi ? (
+              <a href={doiUrl(paper.doi)} rel="noopener noreferrer">
+                {copy.pubs.doi}:{paper.doi}
+              </a>
+            ) : (
+              <span>
+                {copy.pubs.sourceNote}
+                {paper.note ? ` — ${paper.note}` : ""}
+              </span>
+            )}
+          </p>
+        </article>
+      ))
+    }
+  </div>
+  <p class="about-note" data-empty hidden>{copy.pubs.empty}</p>
+</div>
+
+<script>
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>(".filter-btn"));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-pub-list] [data-filters]"));
+  const empty = document.querySelector<HTMLElement>("[data-empty]");
+
+  function apply(filter: string) {
+    let visible = 0;
+    for (const card of cards) {
+      const tags = (card.dataset.filters ?? "").split(/\s+/);
+      const show = filter === "all" || tags.includes(filter);
+      card.hidden = !show;
+      if (show) visible += 1;
+    }
+    if (empty) empty.hidden = visible > 0;
+    for (const button of buttons) {
+      button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
+    }
+  }
+
+  for (const button of buttons) {
+    button.addEventListener("click", () => apply(button.dataset.filter ?? "all"));
+  }
+</script>

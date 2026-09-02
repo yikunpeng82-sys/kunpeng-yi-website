@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PublicationList from "../../../components/PublicationList.astro";
+import { getCopy } from "../../../data/i18n";
+
+const copy = getCopy("zh");
+---
+
+<BaseLayout
+  copy={copy}
+  canonicalPath="/zh/publications/"
+  title={`${copy.pubs.pageTitle} · 易昆鹏`}
+  description={copy.pubs.pageIntro}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker" style="color: var(--wetland)">{copy.pubs.kicker}</p>
+      <h1>{copy.pubs.pageTitle}</h1>
+      <p>{copy.pubs.pageIntro}</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 0">
+    <div class="wrap">
+      <PublicationList copy={copy} />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import Research from "../../components/Research.astro";
+import SelectedWork from "../../components/SelectedWork.astro";
+import StudySystems from "../../components/StudySystems.astro";
+import PublicationsPreview from "../../components/PublicationsPreview.astro";
+import About from "../../components/About.astro";
+import Collaborate from "../../components/Collaborate.astro";
+import Contact from "../../components/Contact.astro";
+import { getCopy } from "../../data/i18n";
+
+const copy = getCopy("zh");
+---
+
+<BaseLayout copy={copy} canonicalPath="/zh/">
+  <Hero copy={copy} />
+  <Research copy={copy} />
+  <SelectedWork copy={copy} />
+  <StudySystems copy={copy} />
+  <PublicationsPreview copy={copy} />
+  <About copy={copy} />
+  <Collaborate copy={copy} />
+  <Contact copy={copy} />
+</BaseLayout>

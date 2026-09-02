@@ -1,0 +1,29 @@
+---
+import type { Copy } from "../data/i18n";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+---
+
+<section class="section band-navy" id={copy.collaborate.id} aria-labelledby="collab-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">{copy.collaborate.kicker}</p>
+      <h2 id="collab-title">{copy.collaborate.title}</h2>
+      <p>{copy.collaborate.intro}</p>
+    </div>
+    <div class="collab-grid">
+      {
+        copy.collaborate.cards.map((card) => (
+          <article class="collab-card">
+            <h3>{card.title}</h3>
+            <p>{card.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

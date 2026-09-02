@@ -1,0 +1,40 @@
+---
+import type { Copy } from "../data/i18n";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const highlights = copy.research.themes.filter((t) => t.highlight);
+const rest = copy.research.themes.filter((t) => !t.highlight);
+---
+
+<section class="section" id={copy.research.id} aria-labelledby="research-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" style="color: var(--wetland)">{copy.research.kicker}</p>
+      <h2 id="research-title">{copy.research.title}</h2>
+      <p>{copy.research.intro}</p>
+    </div>
+    <div class="theme-grid">
+      {
+        highlights.map((theme) => (
+          <article class="theme-card">
+            <h3>{theme.title}</h3>
+            <p>{theme.body}</p>
+          </article>
+        ))
+      }
+    </div>
+    {
+      rest.map((theme) => (
+        <article class="theme-quiet">
+          <h3>{theme.title}</h3>
+          <p>{theme.body}</p>
+          <p style="margin-top:0.6rem">{copy.research.moreNote}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
