@@ -18,6 +18,8 @@ const { copy } = Astro.props;
       <p><strong>{copy.about.lead}</strong></p>
       {copy.about.body.map((para) => <p>{para}</p>)}
       <p class="about-note">{copy.about.nameNote}</p>
+      <p class="about-note">{copy.about.sourceNote}</p>
+      <p class="about-note">{copy.about.labNote}</p>
     </div>
     <aside class="about-side">
       <figure class="about-photo">

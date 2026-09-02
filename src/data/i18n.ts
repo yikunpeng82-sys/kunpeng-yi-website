@@ -97,6 +97,8 @@ export interface Copy {
     lead: string;
     body: string[];
     nameNote: string;
+    sourceNote: string;
+    labNote: string;
     timelineTitle: string;
     timeline: Array<{ role: string; place: string }>;
   };
@@ -113,6 +115,10 @@ export interface Copy {
     title: string;
     intro: string;
     email: string;
+    phone: string;
+    address: string;
+    postal: string;
+    researchGate: string;
     scholar: string;
     cas: string;
     labProfile: string;
@@ -301,10 +307,14 @@ export const en: Copy = {
     lead: `${SITE.titleEn} at the ${SITE.orgEn}, based in the ${SITE.labEn}.`,
     body: [
       "I combine animal tracking, Earth observation and geospatial intelligence to understand how migratory birds navigate rapidly changing wetlands, river basins and energy landscapes—and translate that evidence into conservation and spatial planning.",
-      "Appointments follow the supplied English CV: Hokkaido University doctorate, postdoctoral ecological remote sensing at the CAS Aerospace Information Research Institute (former RADI), then Associate Researcher / Associate Professor at RCEES from April 2017.",
+      "Appointments follow the supplied English CV and the RCEES faculty page: Hokkaido University doctorate, postdoctoral ecological remote sensing at the CAS Aerospace Information Research Institute (former RADI), then Associate Researcher / Associate Professor at RCEES from April 2017.",
+      "The PI-supplied Chinese CV overview records more than 40 papers, more than ten hosted projects (total hosted funding exceeding RMB 8 million), three invention patents and two monographs.",
     ],
     nameNote:
-      "Display name: 易昆鹏. The supplied Chinese overview and some CAS / UCAS / laboratory pages list 伊坤朋.",
+      "Display name: Kunpeng Yi / 易昆鹏. The RCEES faculty page lists 伊坤朋 / YI KUNPENG.",
+    sourceNote:
+      "Output counts on this page follow the newer PI-supplied Chinese CV overview (40+ papers, 10+ hosted projects). The January 2024 RCEES faculty page is older (30+ papers, 7 hosted projects).",
+    labNote: `Current laboratory name: ${SITE.labEn}. The RCEES faculty page still uses the former name ${SITE.labFormerEn}. This is one laboratory, not two.`,
     timelineTitle: "Compact timeline",
     timeline: [...CV_TIMELINE.en],
   },
@@ -330,12 +340,16 @@ export const en: Copy = {
     kicker: "Contact",
     title: "Email is the working channel",
     intro:
-      "Write to the institutional address. There is no form backend on this static site. ORCID, ResearchGate and GitHub will appear when official IDs are supplied.",
+      "Write to the institutional address or use the office line. There is no form backend on this static site. Office telephone and postal address are taken from the public RCEES faculty page.",
     email: "Email",
+    phone: "Office",
+    address: "Postal address",
+    postal: "Postcode",
+    researchGate: "ResearchGate",
     scholar: "Google Scholar",
     cas: "CAS profile",
     labProfile: "Laboratory page",
-    placeholders: "ORCID, ResearchGate and GitHub links are listed in ASSETS_NEEDED.md until confirmed.",
+    placeholders: "ORCID and GitHub remain listed in ASSETS_NEEDED.md until confirmed.",
   },
   footer: {
     identity: `${SITE.nameEn} · ${SITE.nameZh} · ${SITE.orgShortEn}`,
@@ -356,7 +370,7 @@ export const en: Copy = {
     downloadEn: "Download English CV (PDF)",
     downloadZh: "中文简介（PDF）",
     chooserLabel: "Choose a language",
-    privacy: "The PDF may be hosted as supplied. This website does not display gender, place of birth, private phone numbers or a home address.",
+    privacy: "The PDF may be hosted as supplied. This website does not display gender, CCP membership, birthplace, or a private/home telephone.",
   },
 };
 
@@ -494,7 +508,10 @@ export const zh: Copy = {
     title: "易昆鹏",
     lead: `${SITE.orgZh}${SITE.titleZh}，任职于${SITE.labZh}。`,
     body: [CV_OVERVIEW_ZH],
-    nameNote: "本站中文名：易昆鹏。本简介原文及中国科学院、国科大、实验室部分页面写作伊坤朋。",
+    nameNote: "本站中文名：易昆鹏 / Kunpeng Yi。生态环境研究中心教师页作伊坤朋 / YI KUNPENG。",
+    sourceNote:
+      "论文与项目数量采用较新的作者中文简介（40余篇、主持10余项）。2024年1月中科院教师页为较早记录（30余篇、主持7项）。",
+    labNote: `实验室现用名：${SITE.labZh}。中科院教师页仍作${SITE.labFormerZh}。同一实验室，不是两个单位。`,
     timelineTitle: "简要经历",
     timeline: [...CV_TIMELINE.zh],
   },
@@ -519,12 +536,16 @@ export const zh: Copy = {
     kicker: "联系",
     title: "工作邮箱是主要渠道",
     intro:
-      "请使用机构邮箱。本静态站点没有表单后端。ORCID、ResearchGate 与 GitHub 将在官方编号确认后显示。",
+      "请使用机构邮箱或办公电话。本静态站点没有表单后端。办公电话与通讯地址取自生态环境研究中心公开教师页。",
     email: "电子邮箱",
+    phone: "办公电话",
+    address: "通讯地址",
+    postal: "邮编",
+    researchGate: "ResearchGate",
     scholar: "Google Scholar",
     cas: "中科院页面",
     labProfile: "实验室页面",
-    placeholders: "ORCID、ResearchGate 与 GitHub 链接待确认，详见 ASSETS_NEEDED.md。",
+    placeholders: "ORCID 与 GitHub 待确认，详见 ASSETS_NEEDED.md。",
   },
   footer: {
     identity: `${SITE.nameZh} · ${SITE.nameEn} · ${SITE.orgShortZh}`,
@@ -540,12 +561,12 @@ export const zh: Copy = {
   },
   cvPage: {
     title: "个人简历",
-    body: "根据作者提供的中文简介重建。网站不发布性别、籍贯、私人电话或家庭住址。",
+    body: "根据作者提供的中文简介重建。网站不发布性别、政治面貌、籍贯或私人电话。",
     back: "返回首页",
     downloadEn: "English CV (PDF)",
     downloadZh: "下载中文简介（PDF）",
     chooserLabel: "选择语言",
-    privacy: "下载文件按作者提供的学术文本重建。本站页面不展示性别、籍贯、私人电话或家庭住址。",
+    privacy: "下载文件按作者提供的学术文本重建。本站不发布性别、政治面貌、籍贯或私人电话。",
   },
 };
 

@@ -13,11 +13,11 @@ Confirmed public records used for this site come from Crossref, the RCEES facult
 Placeholders only — do not guess.
 
 - [ ] ORCID iD and `https://orcid.org/…` URL
-- [ ] ResearchGate profile URL
+- [x] ResearchGate profile URL — https://www.researchgate.net/profile/Kunpeng-Yi (from the public RCEES faculty page)
 - [ ] GitHub profile URL (if a public research/code identity exists)
 - [ ] Optional: Scopus Author ID, Web of Science ResearcherID, ResearchMap
 
-When IDs are confirmed, add them to `src/data/site.ts` (`SOCIAL_PLACEHOLDERS`) and to Person JSON-LD `sameAs`.
+When remaining IDs are confirmed, add them to `src/data/site.ts` (`SOCIAL_PLACEHOLDERS`) and to Person JSON-LD `sameAs`. ResearchGate is already live.
 
 ## Optional visual assets
 
@@ -35,4 +35,4 @@ When IDs are confirmed, add them to `src/data/site.ts` (`SOCIAL_PLACEHOLDERS`) a
 
 ## Out of scope on purpose
 
-Do not add banking, insurance, wealth-management, Animal-IoT marketing, family information, private phone numbers, or a home address.
+Do not add banking, insurance, wealth-management, Animal-IoT marketing, family information, CCP membership, gender, birthplace, private phone numbers, or a home address. The office telephone and institutional postal address on the public RCEES faculty page may appear on Contact.

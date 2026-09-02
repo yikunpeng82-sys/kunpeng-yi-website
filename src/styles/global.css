@@ -551,6 +551,11 @@ a:hover {
   font-weight: 600;
 }
 
+.contact-card p {
+  margin: 0;
+  color: var(--ink);
+}
+
 .site-footer {
   background: var(--navy-deep);
   color: var(--sand);

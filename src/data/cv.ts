@@ -6,7 +6,7 @@ export const CV_TIMELINE = {
     {
       role: "Associate Researcher / Associate Professor",
       place:
-        "RCEES, CAS & Key Laboratory of Urban and Regional Ecology · Apr 2017 – present",
+        "RCEES, CAS · Apr 2017 – present (CAS faculty page also lists 助理研究员 for this appointment)",
     },
     {
       role: "Postdoctoral Fellow (Ecological Remote Sensing)",
@@ -28,9 +28,9 @@ export const CV_TIMELINE = {
   ],
   zh: [
     {
-      role: "副研究员 / Associate Professor",
+      role: "副研究员、助理研究员",
       place:
-        "中国科学院生态环境研究中心 · 区域与城市生态安全全国重点实验室 · 2017年4月至今",
+        "中国科学院生态环境研究中心 · 2017年4月至今（院所页面同期列出两职称）",
     },
     {
       role: "博士后（生态遥感）",

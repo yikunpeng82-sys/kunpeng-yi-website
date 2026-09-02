@@ -33,9 +33,10 @@ const personLd = jsonLd ?? {
   "@context": "https://schema.org",
   "@type": "Person",
   name: SITE.nameEn,
-  alternateName: [SITE.nameZh, SITE.nameZhVariant],
+  alternateName: [SITE.nameZh, SITE.nameZhVariant, SITE.nameEnPage],
   jobTitle: SITE.titleEn,
   email: `mailto:${SITE.email}`,
+  telephone: SITE.officePhone,
   url: canonical,
   image: portraitUrl,
   affiliation: {
@@ -43,7 +44,19 @@ const personLd = jsonLd ?? {
     name: SITE.orgEn,
     department: SITE.labEn,
   },
-  sameAs: [SITE.scholarUrl, SITE.casUrl, SITE.labProfileUrl, SITE.ucasUrl],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.addressEn,
+    postalCode: SITE.postalCode,
+    addressCountry: "CN",
+  },
+  sameAs: [
+    SITE.scholarUrl,
+    SITE.researchGateUrl,
+    SITE.casUrl,
+    SITE.labProfileUrl,
+    SITE.ucasUrl,
+  ],
 };
 ---
 
