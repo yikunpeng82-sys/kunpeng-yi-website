@@ -37,7 +37,9 @@ const { copy } = Astro.props;
       <div class="hero-actions">
         <a class="btn btn-primary" href={withBase(`${copy.homeHref}#research`)}>{copy.hero.explore}</a>
         <a class="btn btn-ghost" href={withBase(copy.publicationsHref)}>{copy.hero.selected}</a>
-        <a class="btn btn-orange" href={withBase(copy.lang === "zh" ? "/zh/cv/" : "/cv/")}>{copy.hero.cv}</a>
+        <a class="btn btn-orange" href={withBase(copy.lang === "zh" ? SITE.cvZh : SITE.cvEn)} download>
+          {copy.hero.cv}
+        </a>
       </div>
       <p class="cv-note">{copy.hero.cvNote}</p>
     </div>

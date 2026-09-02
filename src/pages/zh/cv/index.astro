@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getCopy } from "../../../data/i18n";
+import { CV_FILES } from "../../../data/cv";
 import { withBase } from "../../../lib/paths";
 
 const copy = getCopy("zh");
@@ -17,11 +18,23 @@ const copy = getCopy("zh");
       <p class="kicker" style="color: var(--wetland)">简历</p>
       <h1>{copy.cvPage.title}</h1>
       <p>{copy.cvPage.body}</p>
-      <p>
-        <a class="btn btn-primary" href={withBase("/cv/kunpeng-yi-cv-placeholder.pdf")} download>
-          {copy.hero.cv}
-        </a>
-      </p>
+      <p class="chooser-label">{copy.cvPage.chooserLabel}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={withBase(CV_FILES.zhPdf)} download>{copy.cvPage.downloadZh}</a>
+        <a class="btn btn-ghost" href={withBase(CV_FILES.enPdf)} download>{copy.cvPage.downloadEn}</a>
+      </div>
+      <p class="about-note">{copy.cvPage.privacy}</p>
+      <h2 class="cv-heading">{copy.about.timelineTitle}</h2>
+      <ol class="timeline">
+        {
+          copy.about.timeline.map((item) => (
+            <li>
+              <strong>{item.role}</strong>
+              <span>{item.place}</span>
+            </li>
+          ))
+        }
+      </ol>
       <p><a href={withBase("/zh/")}>{copy.cvPage.back}</a></p>
     </div>
   </section>

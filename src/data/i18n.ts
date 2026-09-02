@@ -1,4 +1,5 @@
 import { SITE } from "./site";
+import { CV_OVERVIEW_ZH, CV_TIMELINE } from "./cv";
 import type { FilterId, Locale } from "./publications";
 import { FILTER_LABELS } from "./publications";
 
@@ -133,6 +134,10 @@ export interface Copy {
     title: string;
     body: string;
     back: string;
+    downloadEn: string;
+    downloadZh: string;
+    chooserLabel: string;
+    privacy: string;
   };
 }
 
@@ -182,7 +187,7 @@ export const en: Copy = {
     explore: "Explore Research",
     selected: "Selected Publications",
     cv: "Download CV",
-    cvNote: "CV PDF is a placeholder until an official file is supplied.",
+    cvNote: "English CV (PDF). The Chinese overview is on the Chinese site.",
     vizCaption:
       "Conceptual visualization — East Asian–Australasian Flyway outline, GPS tracks and stopovers, wetland pixels, turbine silhouettes and a white-naped crane silhouette. Not observational map data.",
     vizPixelLabel: "wetland pixels",
@@ -296,25 +301,12 @@ export const en: Copy = {
     lead: `${SITE.titleEn} at the ${SITE.orgEn}, based in the ${SITE.labEn}.`,
     body: [
       "I combine animal tracking, Earth observation and geospatial intelligence to understand how migratory birds navigate rapidly changing wetlands, river basins and energy landscapes—and translate that evidence into conservation and spatial planning.",
-      "Doctoral training in remote sensing was completed at Hokkaido University, followed by postdoctoral research at the Chinese Academy of Sciences.",
+      "Appointments follow the supplied English CV: Hokkaido University doctorate, postdoctoral ecological remote sensing at the CAS Aerospace Information Research Institute (former RADI), then Associate Researcher / Associate Professor at RCEES from April 2017.",
     ],
     nameNote:
-      "Display name: 易昆鹏. CAS, UCAS and laboratory pages list 伊坤朋.",
+      "Display name: 易昆鹏. The supplied Chinese overview and some CAS / UCAS / laboratory pages list 伊坤朋.",
     timelineTitle: "Compact timeline",
-    timeline: [
-      {
-        role: "Associate Professor / 副研究员",
-        place: "RCEES, Chinese Academy of Sciences — State Key Laboratory of Urban and Regional Ecology",
-      },
-      {
-        role: "Postdoctoral research",
-        place: "Chinese Academy of Sciences (ecological remote sensing)",
-      },
-      {
-        role: "PhD, remote sensing",
-        place: "Hokkaido University",
-      },
-    ],
+    timeline: [...CV_TIMELINE.en],
   },
   collaborate: {
     id: "collaborate",
@@ -325,7 +317,7 @@ export const en: Copy = {
     cards: [
       {
         title: "Research collaboration",
-        body: "I welcome collaborations that join animal tracking, wetland remote sensing and conservation-oriented spatial planning along the East Asian–Australasian Flyway—especially shared telemetry, habitat time series and planning questions around energy and water infrastructure.",
+        body: "I welcome collaborations that join animal tracking, wetland remote sensing and conservation-oriented spatial planning along the East Asian–Australasian Flyway—especially shared telemetry, habitat time series, and how migratory birds respond to human activity and extreme climate events across wetland, forest and grassland systems.",
       },
       {
         title: "Prospective students",
@@ -359,8 +351,12 @@ export const en: Copy = {
   },
   cvPage: {
     title: "Curriculum vitae",
-    body: "An official CV PDF has not been added yet. This placeholder exists so the Download CV action has a stable URL. See ASSETS_NEEDED.md.",
+    body: "Official English CV reconstructed from the author-supplied document. Gender, place of birth, private telephone and home address are not published on this site.",
     back: "Back to home",
+    downloadEn: "Download English CV (PDF)",
+    downloadZh: "中文简介（PDF）",
+    chooserLabel: "Choose a language",
+    privacy: "The PDF may be hosted as supplied. This website does not display gender, place of birth, private phone numbers or a home address.",
   },
 };
 
@@ -402,7 +398,7 @@ export const zh: Copy = {
     explore: "了解研究",
     selected: "代表论文",
     cv: "下载简历",
-    cvNote: "简历 PDF 为占位文件，待提供正式版本后替换。",
+    cvNote: "中文简介（PDF）。英文 CV 见英文站点。",
     vizCaption:
       "概念示意 — 东亚—澳大利西亚迁飞区轮廓、GPS 轨迹与停歇地、湿地像元、风机剪影与白枕鹤剪影。并非观测地图数据。",
     vizPixelLabel: "湿地像元",
@@ -497,26 +493,10 @@ export const zh: Copy = {
     kicker: "简介",
     title: "易昆鹏",
     lead: `${SITE.orgZh}${SITE.titleZh}，任职于${SITE.labZh}。`,
-    body: [
-      "融合动物追踪、卫星遥感与地理空间智能，研究候鸟如何响应快速变化的湿地、流域与能源景观，并将科学证据转化为保护与空间规划行动。",
-      "于北海道大学获得遥感科学博士学位，随后在中国科学院完成博士后研究。",
-    ],
-    nameNote: "本站中文名：易昆鹏。中国科学院、国科大及实验室页面写作伊坤朋。",
+    body: [CV_OVERVIEW_ZH],
+    nameNote: "本站中文名：易昆鹏。本简介原文及中国科学院、国科大、实验室部分页面写作伊坤朋。",
     timelineTitle: "简要经历",
-    timeline: [
-      {
-        role: "副研究员 / Associate Professor",
-        place: "中国科学院生态环境研究中心 · 区域与城市生态安全全国重点实验室",
-      },
-      {
-        role: "博士后",
-        place: "中国科学院（生态遥感）",
-      },
-      {
-        role: "遥感科学博士",
-        place: "北海道大学",
-      },
-    ],
+    timeline: [...CV_TIMELINE.zh],
   },
   collaborate: {
     id: "collaborate",
@@ -526,7 +506,7 @@ export const zh: Copy = {
     cards: [
       {
         title: "研究合作",
-        body: "欢迎在东亚—澳大利西亚迁飞区开展动物追踪、湿地遥感与面向保护的空间规划合作，尤其是共享遥测、栖息地时间序列，以及能源与水利设施相关的规划问题。",
+        body: "欢迎在东亚—澳大利西亚迁飞区开展动物追踪、湿地遥感与面向保护的空间规划合作，尤其是共享遥测、栖息地时间序列，以及迁徙鸟类对人类活动与极端气候事件的响应。",
       },
       {
         title: "意向学生",
@@ -560,8 +540,12 @@ export const zh: Copy = {
   },
   cvPage: {
     title: "个人简历",
-    body: "正式简历 PDF 尚未加入。此占位页用于提供稳定的下载入口。详见 ASSETS_NEEDED.md。",
+    body: "根据作者提供的中文简介重建。网站不发布性别、籍贯、私人电话或家庭住址。",
     back: "返回首页",
+    downloadEn: "English CV (PDF)",
+    downloadZh: "下载中文简介（PDF）",
+    chooserLabel: "选择语言",
+    privacy: "下载文件按作者提供的学术文本重建。本站页面不展示性别、籍贯、私人电话或家庭住址。",
   },
 };
 

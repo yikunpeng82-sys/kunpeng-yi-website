@@ -24,6 +24,8 @@ export const SITE = {
   portrait: "/images/kunpeng-yi-portrait.jpg",
   ogImage: "/images/og-kunpeng-yi.jpg",
   photoAlt: "Kunpeng Yi / 易昆鹏, Associate Professor, RCEES, CAS",
+  cvEn: "/cv/kunpeng-yi-cv-en.pdf",
+  cvZh: "/cv/kunpeng-yi-cv-zh.pdf",
 } as const;
 
 export const SOCIAL_PLACEHOLDERS = {

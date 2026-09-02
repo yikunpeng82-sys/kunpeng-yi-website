@@ -55,4 +55,5 @@ Do not scrape Google Scholar. Do not invent papers or citation counts.
 - Research, teaching, collaboration and conservation only
 - Energy-landscape text describes spatial overlap and planning context, not collision or demographic impact
 - Hero figure is a conceptual visualization, not a scientific map
-- Official portrait is self-hosted; CV, ORCID, ResearchGate and GitHub remain placeholders in `ASSETS_NEEDED.md`
+- Official portrait and CV PDFs are self-hosted; ORCID, ResearchGate and GitHub remain placeholders in `ASSETS_NEEDED.md`
+- Rebuild CV files with `python3 scripts/build-cv-documents.py` after `pip install reportlab python-docx`

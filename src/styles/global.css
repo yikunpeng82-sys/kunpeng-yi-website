@@ -640,6 +640,18 @@ a:hover {
   color: var(--navy);
 }
 
+.chooser-label {
+  margin: 1.2rem 0 0.5rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.cv-heading {
+  margin: 2rem 0 0.8rem;
+  color: var(--navy);
+  font-size: 1.35rem;
+}
+
 .viz {
   position: relative;
   min-height: 0;
