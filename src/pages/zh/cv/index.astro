@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getCopy } from "../../../data/i18n";
-import { CV_FILES } from "../../../data/cv";
+import { CV_FILES, CV_HOSTED_PROJECTS } from "../../../data/cv";
 import { withBase } from "../../../lib/paths";
 
 const copy = getCopy("zh");
@@ -31,6 +31,18 @@ const copy = getCopy("zh");
             <li>
               <strong>{item.role}</strong>
               <span>{item.place}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <h2 class="cv-heading">{copy.cvPage.projectsTitle}</h2>
+      <p>{copy.cvPage.projectsIntro}</p>
+      <ol class="timeline">
+        {
+          CV_HOSTED_PROJECTS.zh.map((item) => (
+            <li>
+              <strong>{item.title}</strong>
+              <span>{item.source} · {item.dates} · {item.role}</span>
             </li>
           ))
         }

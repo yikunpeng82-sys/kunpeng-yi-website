@@ -230,6 +230,22 @@ export const publications: Publication[] = [
     },
   },
   {
+    id: "ren-2022-wind",
+    year: 2022,
+    title: "优化风电场和电网布局以避免鸟撞",
+    authors: ["Xichan Ren", "Kunpeng Yi", "Lei Cao"],
+    journal: "环境保护科学",
+    volume: "48",
+    issue: "3",
+    pages: "13-19",
+    filters: ["energy"],
+    note: "Listed on the official RCEES laboratory profile as 任西婵, 伊坤朋, 曹垒. 环境保护科学, 2022, 48(3): 13-19. No Crossref DOI verified at build time.",
+    summary: {
+      en: "Chinese-language article on optimizing wind-farm and power-grid layout to reduce bird-strike risk. Spatial layout is treated as a planning question, not as measured collision rates. No Crossref DOI verified at build time.",
+      zh: "讨论优化风电场与电网布局以降低鸟撞风险。空间布局在此作为规划问题，不引申为碰撞率实测。构建时未在 Crossref 核验到 DOI。实验室主页著录：环境保护科学, 2022, 48(3): 13-19。",
+    },
+  },
+  {
     id: "batbayar-2021-vipio",
     year: 2021,
     title:

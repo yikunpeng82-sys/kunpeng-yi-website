@@ -49,6 +49,7 @@ PAPERS = [
     "Yi, K., Zhao, X., Zheng, Z., Zhao, D. & Zeng, Y. (2023). Trends of greening and browning in terrestrial vegetation in China from 2000 to 2020. Ecological Indicators 154: 110587. doi:10.1016/j.ecolind.2023.110587",
     "Yi, K., Zhang, J., Batbayar, N., Higuchi, H., Natsagdorj, T. & Bysykatova, I. P. (2022). Using Tracking Data to Identify Gaps in Knowledge and Conservation of the Critically Endangered Siberian Crane (Leucogeranus leucogeranus). Remote Sensing 14(20): 5101. doi:10.3390/rs14205101",
     "Bao, Y., Shinoda, M., Yi, K., et al. (2022). Satellite-Based Analysis of Spatiotemporal Wildfire Pattern in the Mongolian Plateau. Remote Sensing 15(1): 190. doi:10.3390/rs15010190",
+    "Ren, X., Yi, K. & Cao, L. (2022). 优化风电场和电网布局以避免鸟撞. 环境保护科学 48(3): 13–19. Listed on the official RCEES laboratory profile; no Crossref DOI verified.",
     "Batbayar, N., Yi, K., Zhang, J., Natsagdorj, T., Damba, I., Cao, L. & Fox, A. D. (2021). Combining Tracking and Remote Sensing to Identify Critical Year-Round Site, Habitat Use and Migratory Connectivity of a Threatened Waterbird Species. Remote Sensing 13(20): 4049. doi:10.3390/rs13204049",
     "Damba, I., Zhang, J., Yi, K., et al. (2021). Seasonal and regional differences in migration patterns and conservation status of Swan Geese (Anser cygnoides) in the East Asian Flyway. Avian Research 12(1): 73. doi:10.1186/s40657-021-00308-y",
     "Li, H., Fang, L., Wang, X., Yi, K., Cao, L. & Fox, A. D. (2020). Does snowmelt constrain spring migration progression in sympatric wintering Arctic-nesting geese? Ibis 162(2): 548–555. doi:10.1111/ibi.12767",
@@ -66,7 +67,7 @@ PAPERS = [
 TIMELINE_EN = [
     "Associate Researcher / Associate Professor, Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences & Key Laboratory of Urban and Regional Ecology — April 2017 – present",
     "Postdoctoral Fellow (Ecological Remote Sensing), Institute of Space and Earth Information Innovation, Chinese Academy of Sciences (Aerospace Information Research Institute / former RADI) — August 2014 – April 2017",
-    "Ph.D., Remote Sensing, Hokkaido University — October 2010 – June 2014",
+    "Ph.D., Remote Sensing, Hokkaido University — October 2010 – June 2014. Thesis: 遥感卫星观测及模型在生物质火烧中的应用研究",
     "M.Sc., Physical Geography, Northeast Normal University — September 2008 – July 2010",
     "B.Sc., Geography, Harbin College — September 2003 – July 2007",
 ]
@@ -74,7 +75,7 @@ TIMELINE_EN = [
 TIMELINE_ZH = [
     "副研究员，中国科学院生态环境研究中心、区域与城市生态安全全国重点实验室 — 2017年4月至今",
     "博士后（生态遥感），中国科学院空天信息创新研究院（原遥感与数字地球研究所） — 2014年8月–2017年4月",
-    "遥感科学博士，北海道大学 — 2010年10月–2014年6月",
+    "遥感科学博士，北海道大学 — 2010年10月–2014年6月。学位论文：遥感卫星观测及模型在生物质火烧中的应用研究",
     "自然地理学硕士，东北师范大学 — 2008年9月–2010年7月",
     "地理学学士，哈尔滨学院 — 2003年9月–2007年7月",
 ]
@@ -89,6 +90,23 @@ RESEARCH_EN = (
     "Nanchang territorial spatial planning (2019–2035), and a bird-strike risk early-warning system. "
     "Public academic identity is positioned as Movement Ecology × Earth Observation × Biodiversity Conservation."
 )
+
+SERVICE_EN = (
+    "China Grassland Society (council member). Member of the Geographical Society of China, "
+    "the Ecological Society of China, the Chinese Society of Remote Sensing, and the China Ornithological Society. "
+    "Guest-in-chief editor of special issues for Remote Sensing, Land and Fire. "
+    "The RCEES faculty-page awards section is empty."
+)
+
+SERVICE_ZH = (
+    "中国草学会理事；中国地理学会、中国生态学会、中国遥感学会、中国鸟类学会会员；"
+    "Remote Sensing、Land、Fire 专刊 guest-in-chief editor。教师页获奖及荣誉栏为空。"
+)
+
+NSFC_PROJECTS = [
+    "鸟类多尺度运动行为模式及其迁徙路线核心栖息地监测与保护研究. NSFC General Programme, 2023.01–2026.12, 主持",
+    "基于多源遥感和卫星追踪大数据的鸟类运动行为信息反演研究. NSFC General Programme, 2019.01–2022.12, 主持",
+]
 
 FUNDING_EN = (
     "Has led more than ten research projects supported by the National Natural Science Foundation of China, "
@@ -212,7 +230,12 @@ def build_en_pdf(path: Path) -> None:
         Paragraph("Education &amp; Appointments", s["h"]),
         bullets(TIMELINE_EN, s["item"]),
         Paragraph("Research interests", s["h"]),
+        Paragraph("Faculty-page research direction: 生态环境遥感研究.", s["body"]),
         Paragraph(RESEARCH_EN, s["body"]),
+        Paragraph("Professional service", s["h"]),
+        Paragraph(SERVICE_EN, s["body"]),
+        Paragraph("Hosted NSFC projects (faculty page)", s["h"]),
+        bullets(NSFC_PROJECTS, s["item"]),
         Paragraph("Projects and output (overview)", s["h"]),
         Paragraph(FUNDING_EN, s["body"]),
         Paragraph("Representative publications", s["h"]),
@@ -255,7 +278,12 @@ def build_zh_pdf(path: Path) -> None:
         Paragraph("学历与任职", s["h"]),
         bullets(TIMELINE_ZH, s["item"]),
         Paragraph("研究概述", s["h"]),
+        Paragraph("教师页研究方向：生态环境遥感研究。", s["body"]),
         Paragraph(OVERVIEW_ZH, s["body"]),
+        Paragraph("学术任职", s["h"]),
+        Paragraph(SERVICE_ZH, s["body"]),
+        Paragraph("主持的国家自然科学基金（教师页）", s["h"]),
+        bullets(NSFC_PROJECTS, s["item"]),
         Paragraph(
             "网站定位仍为：运动生态学 × 地球观测 × 生物多样性保护。项目经费明细只保留在简历中，不在网站首页列表。",
             s["body"],
@@ -300,7 +328,13 @@ def build_en_docx(path: Path) -> None:
     for item in TIMELINE_EN:
         doc.add_paragraph(item, style="List Bullet")
     add_heading(doc, "Research interests")
+    doc.add_paragraph("Faculty-page research direction: 生态环境遥感研究.")
     doc.add_paragraph(RESEARCH_EN)
+    add_heading(doc, "Professional service")
+    doc.add_paragraph(SERVICE_EN)
+    add_heading(doc, "Hosted NSFC projects (faculty page)")
+    for item in NSFC_PROJECTS:
+        doc.add_paragraph(item, style="List Bullet")
     add_heading(doc, "Projects and output (overview)")
     doc.add_paragraph(FUNDING_EN)
     add_heading(doc, "Representative publications")
@@ -334,7 +368,13 @@ def build_zh_docx(path: Path) -> None:
     for item in TIMELINE_ZH:
         doc.add_paragraph(item, style="List Bullet")
     add_heading(doc, "研究概述")
+    doc.add_paragraph("教师页研究方向：生态环境遥感研究。")
     doc.add_paragraph(OVERVIEW_ZH)
+    add_heading(doc, "学术任职")
+    doc.add_paragraph(SERVICE_ZH)
+    add_heading(doc, "主持的国家自然科学基金（教师页）")
+    for item in NSFC_PROJECTS:
+        doc.add_paragraph(item, style="List Bullet")
     note = doc.add_paragraph()
     run = note.add_run(
         "根据作者提供的中文简介重建。不发布性别、籍贯、私人电话或家庭住址。工作邮箱：kpyi@rcees.ac.cn。"

@@ -144,6 +144,8 @@ export interface Copy {
     downloadZh: string;
     chooserLabel: string;
     privacy: string;
+    projectsTitle: string;
+    projectsIntro: string;
   };
 }
 
@@ -309,6 +311,7 @@ export const en: Copy = {
       "I combine animal tracking, Earth observation and geospatial intelligence to understand how migratory birds navigate rapidly changing wetlands, river basins and energy landscapes—and translate that evidence into conservation and spatial planning.",
       "Appointments follow the supplied English CV and the RCEES faculty page: Hokkaido University doctorate, postdoctoral ecological remote sensing at the CAS Aerospace Information Research Institute (former RADI), then Associate Researcher / Associate Professor at RCEES from April 2017.",
       "The PI-supplied Chinese CV overview records more than 40 papers, more than ten hosted projects (total hosted funding exceeding RMB 8 million), three invention patents and two monographs.",
+      "The RCEES faculty page lists the research direction as 生态环境遥感研究. Ph.D. thesis (Hokkaido University): 遥感卫星观测及模型在生物质火烧中的应用研究.",
     ],
     nameNote:
       "Display name: Kunpeng Yi / 易昆鹏. The RCEES faculty page lists 伊坤朋 / YI KUNPENG.",
@@ -331,7 +334,11 @@ export const en: Copy = {
       },
       {
         title: "Prospective students",
-        body: "Prospective students may write to the institutional email. No open positions are advertised on this site.",
+        body: "Prospective students may write to the institutional email. Disciplinary areas listed on the RCEES faculty page for inquiry are remote sensing science, geographic information science, ecology and geography. This is not an advertisement of a numbered cohort or an open post.",
+      },
+      {
+        title: "Professional service",
+        body: "China Grassland Society (council member). Member of the Geographical Society of China, the Ecological Society of China, the Chinese Society of Remote Sensing, and the China Ornithological Society. Guest-in-chief editor of special issues for Remote Sensing, Land and Fire. The faculty-page awards section is empty; no honours are listed here.",
       },
     ],
   },
@@ -371,6 +378,8 @@ export const en: Copy = {
     downloadZh: "中文简介（PDF）",
     chooserLabel: "Choose a language",
     privacy: "The PDF may be hosted as supplied. This website does not display gender, CCP membership, birthplace, or a private/home telephone.",
+    projectsTitle: "Hosted NSFC projects (faculty page)",
+    projectsIntro: "Two hosted National Natural Science Foundation of China General Programme titles listed on the RCEES faculty page. The full project record stays in the CV PDF.",
   },
 };
 
@@ -507,7 +516,10 @@ export const zh: Copy = {
     kicker: "简介",
     title: "易昆鹏",
     lead: `${SITE.orgZh}${SITE.titleZh}，任职于${SITE.labZh}。`,
-    body: [CV_OVERVIEW_ZH],
+    body: [
+      CV_OVERVIEW_ZH,
+      "中科院教师页研究方向：生态环境遥感研究。博士学位论文（北海道大学）：遥感卫星观测及模型在生物质火烧中的应用研究。",
+    ],
     nameNote: "本站中文名：易昆鹏 / Kunpeng Yi。生态环境研究中心教师页作伊坤朋 / YI KUNPENG。",
     sourceNote:
       "论文与项目数量采用较新的作者中文简介（40余篇、主持10余项）。2024年1月中科院教师页为较早记录（30余篇、主持7项）。",
@@ -527,7 +539,11 @@ export const zh: Copy = {
       },
       {
         title: "意向学生",
-        body: "意向学生可写信至机构邮箱。本站不发布在招岗位。",
+        body: "意向学生可写信至机构邮箱。教师页列出的可咨询学科方向为：遥感科学；地理信息系统科学；生态学；地理学。本站不发布定额招生或在招岗位。",
+      },
+      {
+        title: "学术任职",
+        body: "中国草学会理事；中国地理学会、中国生态学会、中国遥感学会、中国鸟类学会会员；Remote Sensing、Land、Fire 专刊 guest-in-chief editor。教师页获奖及荣誉栏为空，本站不另列荣誉。",
       },
     ],
   },
@@ -567,6 +583,8 @@ export const zh: Copy = {
     downloadZh: "下载中文简介（PDF）",
     chooserLabel: "选择语言",
     privacy: "下载文件按作者提供的学术文本重建。本站不发布性别、政治面貌、籍贯或私人电话。",
+    projectsTitle: "主持的国家自然科学基金（教师页）",
+    projectsIntro: "生态环境研究中心教师页列出的两项面上项目。完整项目记录只放在简历 PDF，不在首页展开。",
   },
 };
 
