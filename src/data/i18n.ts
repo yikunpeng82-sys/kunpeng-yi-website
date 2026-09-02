@@ -313,8 +313,7 @@ export const en: Copy = {
       "The PI-supplied Chinese CV overview records more than 40 papers, more than ten hosted projects (total hosted funding exceeding RMB 8 million), three invention patents and two monographs.",
       "The RCEES faculty page lists the research direction as 生态环境遥感研究. Ph.D. thesis (Hokkaido University): 遥感卫星观测及模型在生物质火烧中的应用研究.",
     ],
-    nameNote:
-      "Display name: Kunpeng Yi / 易昆鹏. The RCEES faculty page lists 伊坤朋 / YI KUNPENG.",
+    nameNote: "伊坤朋 / Kunpeng Yi.",
     sourceNote:
       "Output counts on this page follow the newer PI-supplied Chinese CV overview (40+ papers, 10+ hosted projects). The January 2024 RCEES faculty page is older (30+ papers, 7 hosted projects).",
     labNote: `Current laboratory name: ${SITE.labEn}. The RCEES faculty page still uses the former name ${SITE.labFormerEn}. This is one laboratory, not two.`,
@@ -502,7 +501,7 @@ export const zh: Copy = {
     viewAll: "全部论文",
     pageTitle: "论文",
     pageIntro:
-      "易昆鹏为署名作者的种子文献，最新在前。筛选对应研究主题。本页不抓取 Google Scholar。未核验 DOI 的条目已标注。",
+      "伊坤朋为署名作者的种子文献，最新在前。筛选对应研究主题。本页不抓取 Google Scholar。未核验 DOI 的条目已标注。",
     filterAll: "全部",
     filterLabel: "筛选论文",
     empty: "该分类下暂无条目。",
@@ -514,13 +513,13 @@ export const zh: Copy = {
   about: {
     id: "about",
     kicker: "简介",
-    title: "易昆鹏",
+    title: "伊坤朋",
     lead: `${SITE.orgZh}${SITE.titleZh}，任职于${SITE.labZh}。`,
     body: [
       CV_OVERVIEW_ZH,
       "中科院教师页研究方向：生态环境遥感研究。博士学位论文（北海道大学）：遥感卫星观测及模型在生物质火烧中的应用研究。",
     ],
-    nameNote: "本站中文名：易昆鹏 / Kunpeng Yi。生态环境研究中心教师页作伊坤朋 / YI KUNPENG。",
+    nameNote: "伊坤朋 / Kunpeng Yi。",
     sourceNote:
       "论文与项目数量采用较新的作者中文简介（40余篇、主持10余项）。2024年1月中科院教师页为较早记录（30余篇、主持7项）。",
     labNote: `实验室现用名：${SITE.labZh}。中科院教师页仍作${SITE.labFormerZh}。同一实验室，不是两个单位。`,
