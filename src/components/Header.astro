@@ -15,8 +15,18 @@ const toggleHref = copy.lang === "en" ? alternatePaths(current).zh : alternatePa
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="brand" href={withBase(copy.homeHref)}>
-      <span class="brand-name">{copy.lang === "zh" ? SITE.nameZh : SITE.nameEn}</span>
-      <span class="brand-meta">{copy.lang === "zh" ? SITE.orgShortZh : SITE.orgShortEn}</span>
+      <img
+        class="brand-avatar"
+        src={withBase(SITE.portrait)}
+        alt={SITE.photoAlt}
+        width="40"
+        height="40"
+        decoding="async"
+      />
+      <span class="brand-text">
+        <span class="brand-name">{copy.lang === "zh" ? SITE.nameZh : SITE.nameEn}</span>
+        <span class="brand-meta">{copy.lang === "zh" ? SITE.orgShortZh : SITE.orgShortEn}</span>
+      </span>
     </a>
     <nav class="nav" id="primary-nav" aria-label={copy.navLabel}>
       {
@@ -32,7 +42,13 @@ const toggleHref = copy.lang === "en" ? alternatePaths(current).zh : alternatePa
       }
     </nav>
     <div class="header-tools">
-      <a class="lang-toggle" href={withBase(toggleHref)} hreflang={copy.lang === "en" ? "zh-CN" : "en"}>
+      <a
+        class="lang-toggle"
+        href={withBase(toggleHref)}
+        hreflang={copy.lang === "en" ? "zh-CN" : "en"}
+        lang={copy.lang === "en" ? "zh-Hans" : "en"}
+        aria-label={copy.langToggleAria}
+      >
         {copy.langToggle}
       </a>
       <button
@@ -56,10 +72,20 @@ const toggleHref = copy.lang === "en" ? alternatePaths(current).zh : alternatePa
   if (button && nav) {
     const openLabel = button.dataset.openLabel ?? "Menu";
     const closeLabel = button.dataset.closeLabel ?? "Close";
-    button.addEventListener("click", () => {
-      const open = nav.classList.toggle("is-open");
+
+    const setOpen = (open: boolean) => {
+      nav.classList.toggle("is-open", open);
       button.setAttribute("aria-expanded", String(open));
       button.textContent = open ? closeLabel : openLabel;
+    };
+
+    button.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && nav.classList.contains("is-open")) {
+        setOpen(false);
+        button.focus();
+      }
     });
   }
 </script>

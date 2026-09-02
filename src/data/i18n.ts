@@ -1,4 +1,5 @@
 import { SITE } from "./site";
+import { CV_OVERVIEW_ZH, CV_TIMELINE } from "./cv";
 import type { FilterId, Locale } from "./publications";
 import { FILTER_LABELS } from "./publications";
 
@@ -19,6 +20,7 @@ export interface Copy {
   openMenu: string;
   closeMenu: string;
   langToggle: string;
+  langToggleAria: string;
   langToggleHref: string;
   homeHref: string;
   publicationsHref: string;
@@ -41,6 +43,8 @@ export interface Copy {
     selected: string;
     cv: string;
     cvNote: string;
+    vizCaption: string;
+    vizPixelLabel: string;
   };
   research: {
     id: string;
@@ -83,6 +87,7 @@ export interface Copy {
     empty: string;
     doi: string;
     sourceNote: string;
+    yearHeading: string;
     filters: Record<FilterId, string>;
   };
   about: {
@@ -92,6 +97,8 @@ export interface Copy {
     lead: string;
     body: string[];
     nameNote: string;
+    sourceNote: string;
+    labNote: string;
     timelineTitle: string;
     timeline: Array<{ role: string; place: string }>;
   };
@@ -108,6 +115,10 @@ export interface Copy {
     title: string;
     intro: string;
     email: string;
+    phone: string;
+    address: string;
+    postal: string;
+    researchGate: string;
     scholar: string;
     cas: string;
     labProfile: string;
@@ -129,6 +140,12 @@ export interface Copy {
     title: string;
     body: string;
     back: string;
+    downloadEn: string;
+    downloadZh: string;
+    chooserLabel: string;
+    privacy: string;
+    projectsTitle: string;
+    projectsIntro: string;
   };
 }
 
@@ -149,6 +166,7 @@ export const en: Copy = {
   openMenu: "Open menu",
   closeMenu: "Close menu",
   langToggle: "中文",
+  langToggleAria: "Switch to Chinese",
   langToggleHref: "/zh/",
   homeHref: "/",
   publicationsHref: "/publications/",
@@ -177,7 +195,10 @@ export const en: Copy = {
     explore: "Explore Research",
     selected: "Selected Publications",
     cv: "Download CV",
-    cvNote: "CV PDF is a placeholder until an official file is supplied.",
+    cvNote: "English CV (PDF). The Chinese overview is on the Chinese site.",
+    vizCaption:
+      "Conceptual visualization — East Asian–Australasian Flyway outline, GPS tracks and stopovers, wetland pixels, turbine silhouettes and a white-naped crane silhouette. Not observational map data.",
+    vizPixelLabel: "wetland pixels",
   },
   research: {
     id: "research",
@@ -278,49 +299,46 @@ export const en: Copy = {
     empty: "No papers in this filter.",
     doi: "doi",
     sourceNote: "Unverified DOI",
+    yearHeading: "Year",
     filters,
   },
   about: {
     id: "about",
     kicker: "About",
-    title: "Kunpeng Yi / 易昆鹏",
+    title: "Kunpeng Yi",
     lead: `${SITE.titleEn} at the ${SITE.orgEn}, based in the ${SITE.labEn}.`,
     body: [
       "I combine animal tracking, Earth observation and geospatial intelligence to understand how migratory birds navigate rapidly changing wetlands, river basins and energy landscapes—and translate that evidence into conservation and spatial planning.",
-      "Doctoral training in remote sensing was completed at Hokkaido University, followed by postdoctoral research at the Chinese Academy of Sciences. Current teaching and supervision sit in movement ecology, wetland monitoring and ecosystem remote sensing through the University of Chinese Academy of Sciences.",
+      "Appointments follow the supplied English CV and the RCEES faculty page: Hokkaido University doctorate, postdoctoral ecological remote sensing at the CAS Aerospace Information Research Institute (former RADI), then Associate Researcher / Associate Professor at RCEES from April 2017.",
+      "The PI-supplied Chinese CV overview records more than 40 papers, more than ten hosted projects (total hosted funding exceeding RMB 8 million), three invention patents and two monographs.",
+      "The RCEES faculty page lists the research direction as 生态环境遥感研究. Ph.D. thesis (Hokkaido University): 遥感卫星观测及模型在生物质火烧中的应用研究.",
     ],
     nameNote:
-      "Chinese name used on this site: 易昆鹏. Institutional CAS / UCAS / laboratory pages have also listed 伊坤朋.",
+      "Display name: Kunpeng Yi / 易昆鹏. The RCEES faculty page lists 伊坤朋 / YI KUNPENG.",
+    sourceNote:
+      "Output counts on this page follow the newer PI-supplied Chinese CV overview (40+ papers, 10+ hosted projects). The January 2024 RCEES faculty page is older (30+ papers, 7 hosted projects).",
+    labNote: `Current laboratory name: ${SITE.labEn}. The RCEES faculty page still uses the former name ${SITE.labFormerEn}. This is one laboratory, not two.`,
     timelineTitle: "Compact timeline",
-    timeline: [
-      {
-        role: "Associate Professor / 副研究员",
-        place: "RCEES, Chinese Academy of Sciences — State Key Laboratory of Urban and Regional Ecology",
-      },
-      {
-        role: "Postdoctoral research",
-        place: "Chinese Academy of Sciences (ecological remote sensing)",
-      },
-      {
-        role: "PhD, remote sensing",
-        place: "Hokkaido University",
-      },
-    ],
+    timeline: [...CV_TIMELINE.en],
   },
   collaborate: {
     id: "collaborate",
     kicker: "Collaborate",
     title: "Research first, then people",
     intro:
-      "This page lists research collaboration and training only. It does not advertise jobs, products or consultancy retainers.",
+      "This page lists research collaboration only. It does not advertise jobs, products or consultancy retainers.",
     cards: [
       {
         title: "Research collaboration",
-        body: "I welcome collaborations that join animal tracking, wetland remote sensing and conservation-oriented spatial planning along the East Asian–Australasian Flyway—especially shared telemetry, habitat time series and planning questions around energy and water infrastructure.",
+        body: "I welcome collaborations that join animal tracking, wetland remote sensing and conservation-oriented spatial planning along the East Asian–Australasian Flyway—especially shared telemetry, habitat time series, and how migratory birds respond to human activity and extreme climate events across wetland, forest and grassland systems.",
       },
       {
         title: "Prospective students",
-        body: "Master’s supervision is offered through UCAS / RCEES in ecology, natural resources and GIScience. Typical topics include migratory-animal monitoring and protection, wetland monitoring and ecological restoration, and remote-sensing assessment of ecosystems.",
+        body: "Prospective students may write to the institutional email. Disciplinary areas listed on the RCEES faculty page for inquiry are remote sensing science, geographic information science, ecology and geography. This is not an advertisement of a numbered cohort or an open post.",
+      },
+      {
+        title: "Professional service",
+        body: "China Grassland Society (council member). Member of the Geographical Society of China, the Ecological Society of China, the Chinese Society of Remote Sensing, and the China Ornithological Society. Guest-in-chief editor of special issues for Remote Sensing, Land and Fire. The faculty-page awards section is empty; no honours are listed here.",
       },
     ],
   },
@@ -329,12 +347,16 @@ export const en: Copy = {
     kicker: "Contact",
     title: "Email is the working channel",
     intro:
-      "Write to the institutional address. There is no form backend on this static site. ORCID, ResearchGate and GitHub will appear when official IDs are supplied.",
+      "Write to the institutional address or use the office line. There is no form backend on this static site. Office telephone and postal address are taken from the public RCEES faculty page.",
     email: "Email",
+    phone: "Office",
+    address: "Postal address",
+    postal: "Postcode",
+    researchGate: "ResearchGate",
     scholar: "Google Scholar",
     cas: "CAS profile",
     labProfile: "Laboratory page",
-    placeholders: "ORCID, ResearchGate and GitHub links are listed in ASSETS_NEEDED.md until confirmed.",
+    placeholders: "ORCID and GitHub remain listed in ASSETS_NEEDED.md until confirmed.",
   },
   footer: {
     identity: `${SITE.nameEn} · ${SITE.nameZh} · ${SITE.orgShortEn}`,
@@ -350,8 +372,14 @@ export const en: Copy = {
   },
   cvPage: {
     title: "Curriculum vitae",
-    body: "An official CV PDF has not been added yet. This placeholder exists so the Download CV action has a stable URL. See ASSETS_NEEDED.md.",
+    body: "Official English CV reconstructed from the author-supplied document. Gender, place of birth, private telephone and home address are not published on this site.",
     back: "Back to home",
+    downloadEn: "Download English CV (PDF)",
+    downloadZh: "中文简介（PDF）",
+    chooserLabel: "Choose a language",
+    privacy: "The PDF may be hosted as supplied. This website does not display gender, CCP membership, birthplace, or a private/home telephone.",
+    projectsTitle: "Hosted NSFC projects (faculty page)",
+    projectsIntro: "Two hosted National Natural Science Foundation of China General Programme titles listed on the RCEES faculty page. The full project record stays in the CV PDF.",
   },
 };
 
@@ -364,6 +392,7 @@ export const zh: Copy = {
   openMenu: "打开菜单",
   closeMenu: "关闭菜单",
   langToggle: "EN",
+  langToggleAria: "切换到英文",
   langToggleHref: "/",
   homeHref: "/zh/",
   publicationsHref: "/zh/publications/",
@@ -392,7 +421,10 @@ export const zh: Copy = {
     explore: "了解研究",
     selected: "代表论文",
     cv: "下载简历",
-    cvNote: "简历 PDF 为占位文件，待提供正式版本后替换。",
+    cvNote: "中文简介（PDF）。英文 CV 见英文站点。",
+    vizCaption:
+      "概念示意 — 东亚—澳大利西亚迁飞区轮廓、GPS 轨迹与停歇地、湿地像元、风机剪影与白枕鹤剪影。并非观测地图数据。",
+    vizPixelLabel: "湿地像元",
   },
   research: {
     id: "research",
@@ -476,48 +508,42 @@ export const zh: Copy = {
     empty: "该分类下暂无条目。",
     doi: "doi",
     sourceNote: "DOI 未核验",
+    yearHeading: "年份",
     filters: filtersZh,
   },
   about: {
     id: "about",
     kicker: "简介",
-    title: "易昆鹏 / Kunpeng Yi",
+    title: "易昆鹏",
     lead: `${SITE.orgZh}${SITE.titleZh}，任职于${SITE.labZh}。`,
     body: [
-      "融合动物追踪、卫星遥感与地理空间智能，研究候鸟如何响应快速变化的湿地、流域与能源景观，并将科学证据转化为保护与空间规划行动。",
-      "于北海道大学获得遥感科学博士学位，随后在中国科学院完成博士后研究。目前通过中国科学院大学在运动生态学、湿地监测与生态系统遥感方向开展教学与指导。",
+      CV_OVERVIEW_ZH,
+      "中科院教师页研究方向：生态环境遥感研究。博士学位论文（北海道大学）：遥感卫星观测及模型在生物质火烧中的应用研究。",
     ],
-    nameNote:
-      "本站中文名：易昆鹏。中国科学院、国科大及实验室机构页面亦见「伊坤朋」。",
+    nameNote: "本站中文名：易昆鹏 / Kunpeng Yi。生态环境研究中心教师页作伊坤朋 / YI KUNPENG。",
+    sourceNote:
+      "论文与项目数量采用较新的作者中文简介（40余篇、主持10余项）。2024年1月中科院教师页为较早记录（30余篇、主持7项）。",
+    labNote: `实验室现用名：${SITE.labZh}。中科院教师页仍作${SITE.labFormerZh}。同一实验室，不是两个单位。`,
     timelineTitle: "简要经历",
-    timeline: [
-      {
-        role: "副研究员 / Associate Professor",
-        place: "中国科学院生态环境研究中心 · 区域与城市生态安全全国重点实验室",
-      },
-      {
-        role: "博士后",
-        place: "中国科学院（生态遥感）",
-      },
-      {
-        role: "遥感科学博士",
-        place: "北海道大学",
-      },
-    ],
+    timeline: [...CV_TIMELINE.zh],
   },
   collaborate: {
     id: "collaborate",
     kicker: "合作",
     title: "先研究，后人事",
-    intro: "本页只列研究合作与学生培养，不发布岗位、产品或顾问聘任。",
+    intro: "本页只列研究合作，不发布岗位、产品或顾问聘任。",
     cards: [
       {
         title: "研究合作",
-        body: "欢迎在东亚—澳大利西亚迁飞区开展动物追踪、湿地遥感与面向保护的空间规划合作，尤其是共享遥测、栖息地时间序列，以及能源与水利设施相关的规划问题。",
+        body: "欢迎在东亚—澳大利西亚迁飞区开展动物追踪、湿地遥感与面向保护的空间规划合作，尤其是共享遥测、栖息地时间序列，以及迁徙鸟类对人类活动与极端气候事件的响应。",
       },
       {
         title: "意向学生",
-        body: "通过国科大 / 生态环境研究中心在生态学、自然资源学、地图学与地理信息系统方向招收硕士。常见题目包括迁徙动物监测与保护、湿地监测与生态修复、生态系统遥感监测与评估。",
+        body: "意向学生可写信至机构邮箱。教师页列出的可咨询学科方向为：遥感科学；地理信息系统科学；生态学；地理学。本站不发布定额招生或在招岗位。",
+      },
+      {
+        title: "学术任职",
+        body: "中国草学会理事；中国地理学会、中国生态学会、中国遥感学会、中国鸟类学会会员；Remote Sensing、Land、Fire 专刊 guest-in-chief editor。教师页获奖及荣誉栏为空，本站不另列荣誉。",
       },
     ],
   },
@@ -526,12 +552,16 @@ export const zh: Copy = {
     kicker: "联系",
     title: "工作邮箱是主要渠道",
     intro:
-      "请使用机构邮箱。本静态站点没有表单后端。ORCID、ResearchGate 与 GitHub 将在官方编号确认后显示。",
+      "请使用机构邮箱或办公电话。本静态站点没有表单后端。办公电话与通讯地址取自生态环境研究中心公开教师页。",
     email: "电子邮箱",
+    phone: "办公电话",
+    address: "通讯地址",
+    postal: "邮编",
+    researchGate: "ResearchGate",
     scholar: "Google Scholar",
     cas: "中科院页面",
     labProfile: "实验室页面",
-    placeholders: "ORCID、ResearchGate 与 GitHub 链接待确认，详见 ASSETS_NEEDED.md。",
+    placeholders: "ORCID 与 GitHub 待确认，详见 ASSETS_NEEDED.md。",
   },
   footer: {
     identity: `${SITE.nameZh} · ${SITE.nameEn} · ${SITE.orgShortZh}`,
@@ -547,8 +577,14 @@ export const zh: Copy = {
   },
   cvPage: {
     title: "个人简历",
-    body: "正式简历 PDF 尚未加入。此占位页用于提供稳定的下载入口。详见 ASSETS_NEEDED.md。",
+    body: "根据作者提供的中文简介重建。网站不发布性别、政治面貌、籍贯或私人电话。",
     back: "返回首页",
+    downloadEn: "English CV (PDF)",
+    downloadZh: "下载中文简介（PDF）",
+    chooserLabel: "选择语言",
+    privacy: "下载文件按作者提供的学术文本重建。本站不发布性别、政治面貌、籍贯或私人电话。",
+    projectsTitle: "主持的国家自然科学基金（教师页）",
+    projectsIntro: "生态环境研究中心教师页列出的两项面上项目。完整项目记录只放在简历 PDF，不在首页展开。",
   },
 };
 

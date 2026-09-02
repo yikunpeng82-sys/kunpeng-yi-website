@@ -1,5 +1,6 @@
 export const SITE = {
   nameEn: "Kunpeng Yi",
+  nameEnPage: "YI KUNPENG",
   nameZh: "易昆鹏",
   nameZhVariant: "伊坤朋",
   titleEn: "Associate Professor",
@@ -11,7 +12,15 @@ export const SITE = {
   orgShortZh: "中科院生态环境研究中心",
   labEn: "State Key Laboratory of Urban and Regional Ecology",
   labZh: "区域与城市生态安全全国重点实验室",
+  labFormerEn: "城市与区域生态国家重点实验室",
+  labFormerZh: "城市与区域生态国家重点实验室",
   email: "kpyi@rcees.ac.cn",
+  officePhone: "010-62915655",
+  officePhoneHref: "tel:+861062915655",
+  postalCode: "100085",
+  addressZh: "北京海淀区双清路18号",
+  addressEn: "18 Shuangqing Road, Haidian District, Beijing, China",
+  researchGateUrl: "https://www.researchgate.net/profile/Kunpeng-Yi",
   scholarUrl: "https://scholar.google.com/citations?hl=en&user=cYTsBq0AAAAJ",
   casUrl: "https://rcees.cas.cn/yj/fgj/202401/t20240125_6970543.html",
   labProfileUrl:
@@ -21,10 +30,14 @@ export const SITE = {
   positioningZh: "运动生态学 × 地球观测 × 生物多样性保护",
   heroLineEn: "From satellite pixels to migratory pathways",
   heroLineZh: "从卫星像元到候鸟迁徙路径",
+  portrait: "/images/kunpeng-yi-portrait.jpg",
+  ogImage: "/images/og-kunpeng-yi.jpg",
+  photoAlt: "Kunpeng Yi / 易昆鹏, Associate Professor, RCEES, CAS",
+  cvEn: "/cv/kunpeng-yi-cv-en.pdf",
+  cvZh: "/cv/kunpeng-yi-cv-zh.pdf",
 } as const;
 
 export const SOCIAL_PLACEHOLDERS = {
   orcid: null as string | null,
-  researchGate: null as string | null,
   github: null as string | null,
 } as const;

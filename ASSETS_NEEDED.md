@@ -4,8 +4,8 @@ Confirmed public records used for this site come from Crossref, the RCEES facult
 
 ## Identity and documents
 
-- [ ] Official bilingual CV PDF to replace `public/cv/kunpeng-yi-cv-placeholder.pdf` and the `/cv/` placeholder page
-- [ ] Preferred public portrait (rights-cleared; no publisher or third-party hotlinks)
+- [x] Official bilingual CV — `public/cv/kunpeng-yi-cv-en.pdf` and `public/cv/kunpeng-yi-cv-zh.pdf` (optional `.docx` alongside). Reconstructed from the author-supplied documents; website UI omits gender, place of birth, private phone and home address.
+- [x] Preferred public portrait (rights-cleared; no publisher or third-party hotlinks) — `public/images/kunpeng-yi-portrait.jpg`
 - [ ] Written confirmation of the public Chinese name to use on letterhead: **易昆鹏** (this site) versus **伊坤朋** (CAS / UCAS / laboratory pages)
 
 ## Persistent researcher IDs
@@ -13,18 +13,18 @@ Confirmed public records used for this site come from Crossref, the RCEES facult
 Placeholders only — do not guess.
 
 - [ ] ORCID iD and `https://orcid.org/…` URL
-- [ ] ResearchGate profile URL
+- [x] ResearchGate profile URL — https://www.researchgate.net/profile/Kunpeng-Yi (from the public RCEES faculty page)
 - [ ] GitHub profile URL (if a public research/code identity exists)
 - [ ] Optional: Scopus Author ID, Web of Science ResearcherID, ResearchMap
 
-When IDs are confirmed, add them to `src/data/site.ts` (`SOCIAL_PLACEHOLDERS`) and to Person JSON-LD `sameAs`.
+When remaining IDs are confirmed, add them to `src/data/site.ts` (`SOCIAL_PLACEHOLDERS`) and to Person JSON-LD `sameAs`. ResearchGate is already live.
 
 ## Optional visual assets
 
 - [ ] Laboratory or RCEES mark, if branding permission is granted
 - [ ] Rights-cleared field photographs of study systems (Miyun, Baiyangdian, Poyang, tracking fieldwork). Do **not** hotlink publisher figures
 - [ ] Higher-resolution crane silhouette only if it remains clearly **conceptual** and is not presented as a scientific map
-- [ ] Open Graph share image (`1200×630`) once a portrait or conceptual still is approved
+- [x] Open Graph share image (`1200×630`) — official crop at `public/images/og-kunpeng-yi.jpg` (conceptual SVG retained at `public/og/share.svg`)
 
 ## Publications maintenance
 
@@ -35,4 +35,4 @@ When IDs are confirmed, add them to `src/data/site.ts` (`SOCIAL_PLACEHOLDERS`) a
 
 ## Out of scope on purpose
 
-Do not add banking, insurance, wealth-management, Animal-IoT marketing, family information, private phone numbers, or a home address.
+Do not add banking, insurance, wealth-management, Animal-IoT marketing, family information, CCP membership, gender, birthplace, private phone numbers, or a home address. The office telephone and institutional postal address on the public RCEES faculty page may appear on Contact.

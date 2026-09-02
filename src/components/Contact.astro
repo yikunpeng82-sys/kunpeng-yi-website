@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { copy } = Astro.props;
+const address = copy.lang === "zh" ? SITE.addressZh : SITE.addressEn;
 ---
 
 <section class="section" id={copy.contact.id} aria-labelledby="contact-title">
@@ -20,6 +21,22 @@ const { copy } = Astro.props;
       <article class="contact-card">
         <h3 style="margin:0 0 0.4rem; color: var(--navy)">{copy.contact.email}</h3>
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </article>
+      <article class="contact-card">
+        <h3 style="margin:0 0 0.4rem; color: var(--navy)">{copy.contact.phone}</h3>
+        <a href={SITE.officePhoneHref}>{SITE.officePhone}</a>
+      </article>
+      <article class="contact-card">
+        <h3 style="margin:0 0 0.4rem; color: var(--navy)">{copy.contact.address}</h3>
+        <p>
+          {address}
+          <br />
+          {copy.contact.postal} {SITE.postalCode}
+        </p>
+      </article>
+      <article class="contact-card">
+        <h3 style="margin:0 0 0.4rem; color: var(--navy)">{copy.contact.researchGate}</h3>
+        <a href={SITE.researchGateUrl} rel="noopener noreferrer">researchgate.net/profile/Kunpeng-Yi</a>
       </article>
       <article class="contact-card">
         <h3 style="margin:0 0 0.4rem; color: var(--navy)">{copy.contact.scholar}</h3>

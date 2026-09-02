@@ -1,5 +1,6 @@
 ---
 import type { Copy } from "../data/i18n";
+import { SITE } from "../data/site";
 import { withBase } from "../lib/paths";
 import HeroViz from "./HeroViz.astro";
 
@@ -14,8 +15,20 @@ const { copy } = Astro.props;
   <div class="wrap hero-grid">
     <div>
       <p class="kicker">{copy.hero.kicker}</p>
-      <h1 id="hero-name">{copy.hero.name}</h1>
-      <p class="hero-alt">{copy.hero.nameAlt}</p>
+      <div class="hero-identity">
+        <img
+          class="hero-portrait"
+          src={withBase(SITE.portrait)}
+          alt={SITE.photoAlt}
+          width="112"
+          height="112"
+          decoding="async"
+        />
+        <div>
+          <h1 id="hero-name">{copy.hero.name}</h1>
+          <p class="hero-alt">{copy.hero.nameAlt}</p>
+        </div>
+      </div>
       <p class="hero-role">{copy.hero.role}</p>
       <p class="hero-aff">{copy.hero.affiliation}</p>
       <p class="hero-lab">{copy.hero.lab}</p>
@@ -24,10 +37,12 @@ const { copy } = Astro.props;
       <div class="hero-actions">
         <a class="btn btn-primary" href={withBase(`${copy.homeHref}#research`)}>{copy.hero.explore}</a>
         <a class="btn btn-ghost" href={withBase(copy.publicationsHref)}>{copy.hero.selected}</a>
-        <a class="btn btn-orange" href={withBase(copy.lang === "zh" ? "/zh/cv/" : "/cv/")}>{copy.hero.cv}</a>
+        <a class="btn btn-orange" href={withBase(copy.lang === "zh" ? SITE.cvZh : SITE.cvEn)} download>
+          {copy.hero.cv}
+        </a>
       </div>
       <p class="cv-note">{copy.hero.cvNote}</p>
     </div>
-    <HeroViz />
+    <HeroViz copy={copy} />
   </div>
 </section>

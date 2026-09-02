@@ -28,7 +28,7 @@ const items = homePublications();
             <h3 style="margin:0 0 0.45rem; color: var(--navy); font-size: 1.05rem">{paper.title}</h3>
             <p class="authors">{formatAuthors(paper.authors, copy.lang)}</p>
             {paper.doi ? (
-              <a href={doiUrl(paper.doi)} rel="noopener noreferrer">
+              <a href={doiUrl(paper.doi)} target="_blank" rel="noopener noreferrer">
                 {copy.pubs.doi}:{paper.doi}
               </a>
             ) : (
