@@ -32,7 +32,8 @@ const toggleHref = copy.lang === "en" ? alternatePaths(current).zh : alternatePa
       {
         copy.nav.map((item) => {
           const currentPage =
-            item.id === "publications" && current.includes("/publications/");
+            (item.id === "publications" && current.includes("/publications/")) ||
+            (item.id === "projects" && current.includes("/projects/"));
           return (
             <a href={withBase(item.href)} aria-current={currentPage ? "page" : undefined}>
               {item.label}

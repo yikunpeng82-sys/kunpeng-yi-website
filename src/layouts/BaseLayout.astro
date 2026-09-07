@@ -44,12 +44,40 @@ const personLd = jsonLd ?? {
   telephone: SITE.officePhone,
   url: canonical,
   image: portraitUrl,
-  affiliation: {
-    "@type": "Organization",
-    name: SITE.orgEn,
-    department: `${SITE.labEn} (${SITE.labEnShort})`,
-    url: SITE.labUrl,
-  },
+  affiliation: [
+    {
+      "@type": "Organization",
+      name: SITE.orgEn,
+      url: SITE.casUrl,
+    },
+    {
+      "@type": "Organization",
+      name: `${SITE.labEn} (${SITE.labEnShort})`,
+      alternateName: SITE.labFormerEn,
+      url: SITE.labUrl,
+      parentOrganization: {
+        "@type": "Organization",
+        name: SITE.orgEn,
+      },
+    },
+  ],
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Hokkaido University",
+    },
+    {
+      "@type": "Organization",
+      name: "Aerospace Information Research Institute, Chinese Academy of Sciences (AIRCAS)",
+      alternateName: "Institute of Remote Sensing and Digital Earth (RADI)",
+    },
+  ],
+  knowsAbout: [
+    "Movement ecology",
+    "Earth observation",
+    "Biodiversity conservation",
+    "Wetland remote sensing",
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: SITE.addressEn,

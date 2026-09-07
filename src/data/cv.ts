@@ -3,8 +3,8 @@ import { SITE } from "./site";
 export const CV_TIMELINE = {
   en: [
     {
-      role: "Associate Professor",
-      place: `${SITE.orgEn}; ${SITE.labEn} (${SITE.labEnShort}) · April 2017 – present`,
+      role: SITE.titleEnFull,
+      place: `${SITE.orgEn}; ${SITE.labEn} (${SITE.labEnShort}), formerly ${SITE.labFormerEn} · April 2017 – present`,
     },
     {
       role: "Postdoctoral Fellow, Ecological Remote Sensing",
@@ -144,6 +144,6 @@ export const CV_IDENTITY = {
   nameEn: SITE.nameEn,
   nameZh: SITE.nameZh,
   degree: "Ph.D.",
-  positionEn: `${SITE.titleEn}, ${SITE.orgEn}`,
+  positionEn: `${SITE.titleEnFull}, ${SITE.orgEn}`,
   positionZh: `${SITE.orgZh}${SITE.titleZh}`,
 } as const;

@@ -1,5 +1,6 @@
 ---
 import type { Copy } from "../data/i18n";
+import { doiUrl } from "../data/publications";
 
 interface Props {
   copy: Copy;
@@ -8,23 +9,33 @@ interface Props {
 const { copy } = Astro.props;
 ---
 
-<section class="section band-sand" id={copy.cases.id} aria-labelledby="cases-title">
+<section class="section band-sand" id={copy.featured.id} aria-labelledby="featured-title">
   <div class="wrap">
     <div class="section-head">
-      <p class="kicker" style="color: var(--wetland)">{copy.cases.kicker}</p>
-      <h2 id="cases-title">{copy.cases.title}</h2>
-      <p>{copy.cases.intro}</p>
+      <p class="kicker" style="color: var(--wetland)">{copy.featured.kicker}</p>
+      <h2 id="featured-title">{copy.featured.title}</h2>
+      <p>{copy.featured.intro}</p>
     </div>
-    <div class="theme-grid">
+    <div class="featured-grid">
       {
-        copy.cases.items.map((item) => (
+        copy.featured.items.map((item) => (
           <article class="theme-card case-card">
-            <figure class="case-figure" aria-label={copy.cases.placeholder}>
+            <figure class="case-figure" aria-label={copy.featured.placeholder}>
               <span class="case-figure-label">{item.figure}</span>
-              <figcaption>{copy.cases.placeholder}</figcaption>
+              <figcaption>{copy.featured.placeholder}</figcaption>
             </figure>
             <h3>{item.title}</h3>
             <p>{item.body}</p>
+            {item.note ? <p class="program-note">{item.note}</p> : null}
+            {
+              item.doi ? (
+                <p class="doi-line">
+                  <a href={doiUrl(item.doi)} target="_blank" rel="noopener noreferrer">
+                    DOI: {item.doi}
+                  </a>
+                </p>
+              ) : null
+            }
           </article>
         ))
       }
