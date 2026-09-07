@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getCopy } from "../../../data/i18n";
+import { PROJECTS } from "../../../data/projects";
+import { withBase } from "../../../lib/paths";
+
+const copy = getCopy("zh");
+---
+
+<BaseLayout
+  copy={copy}
+  canonicalPath="/zh/projects/"
+  title={`${copy.projectsPage.title} · 伊坤朋`}
+  description={copy.projectsPage.body}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker" style="color: var(--wetland)">{copy.projectsPage.title}</p>
+      <h1>{copy.projectsPage.title}</h1>
+      <p>{copy.projectsPage.intro}</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 0">
+    <div class="wrap">
+      <ol class="project-list">
+        {
+          PROJECTS.map((item) => (
+            <li class="cite-item">
+              <h2 class="pub-title">{item.title.zh}</h2>
+              <p class="meta-line">
+                {copy.projectsPage.sourceLabel}：{item.source.zh}
+                {item.dates ? ` · ${item.dates}` : ""}
+              </p>
+              <p>
+                {copy.projectsPage.roleLabel}：{item.role.zh}
+              </p>
+              {
+                item.note ? (
+                  <p class="program-note">
+                    {copy.projectsPage.noteLabel}：{item.note.zh}
+                  </p>
+                ) : null
+              }
+            </li>
+          ))
+        }
+      </ol>
+      <p style="margin-top: 1.5rem">
+        <a href={withBase("/zh/cv/")}>{copy.cvPage.title}</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

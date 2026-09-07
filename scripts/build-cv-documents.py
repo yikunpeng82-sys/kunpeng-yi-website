@@ -49,7 +49,7 @@ CONTACT_ZH = (
 )
 
 TIMELINE_EN = [
-    "Associate Professor, Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences; State Key Laboratory of Regional and Urban Ecology (SKLRUE), formerly State Key Laboratory of Urban and Regional Ecology — April 2017 – present",
+    "Associate Researcher / Associate Professor, Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences; State Key Laboratory of Regional and Urban Ecology (SKLRUE), formerly State Key Laboratory of Urban and Regional Ecology — April 2017 – present",
     "Postdoctoral Fellow (Ecological Remote Sensing), Aerospace Information Research Institute, Chinese Academy of Sciences (AIRCAS), formerly RADI — August 2014 – April 2017",
     "Ph.D., Remote Sensing, Hokkaido University — October 2010 – June 2014. Thesis: 遥感卫星观测及模型在生物质火烧中的应用研究",
     "M.Sc., Physical Geography, Northeast Normal University — September 2008 – July 2010",
@@ -239,8 +239,8 @@ def build_en_cv(path: Path) -> None:
     story = [
         Paragraph("Academic CV", s["title"]),
         Paragraph("Kunpeng Yi / 伊坤朋", s["sub"]),
-        Paragraph("Associate Professor, Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences", s["meta"]),
-        Paragraph("State Key Laboratory of Regional and Urban Ecology (SKLRUE)", s["meta"]),
+        Paragraph("Associate Researcher / Associate Professor, Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences", s["meta"]),
+        Paragraph("State Key Laboratory of Regional and Urban Ecology (SKLRUE), formerly State Key Laboratory of Urban and Regional Ecology", s["meta"]),
         Paragraph(CONTACT_EN, s["meta"]),
         Paragraph("Education and appointments", s["h"]),
         bullets(TIMELINE_EN, s["item"]),
@@ -314,8 +314,8 @@ def build_en_bio(path: Path) -> None:
     story = [
         Paragraph("Academic Bio", s["title"]),
         Paragraph("Kunpeng Yi / 伊坤朋", s["sub"]),
-        Paragraph("Associate Professor, Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences", s["meta"]),
-        Paragraph("State Key Laboratory of Regional and Urban Ecology (SKLRUE)", s["meta"]),
+        Paragraph("Associate Researcher / Associate Professor, Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences", s["meta"]),
+        Paragraph("State Key Laboratory of Regional and Urban Ecology (SKLRUE), formerly State Key Laboratory of Urban and Regional Ecology", s["meta"]),
         Paragraph(CONTACT_EN, s["meta"]),
         Paragraph("Profile", s["h"]),
         Paragraph(RESEARCH_EN, s["body"]),
@@ -366,8 +366,8 @@ def build_en_docx(path: Path) -> None:
     run = title.add_run("Academic CV — Kunpeng Yi / 伊坤朋")
     run.bold = True
     run.font.size = Pt(18)
-    doc.add_paragraph("Associate Professor, Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences")
-    doc.add_paragraph("State Key Laboratory of Regional and Urban Ecology (SKLRUE)")
+    doc.add_paragraph("Associate Researcher / Associate Professor, Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences")
+    doc.add_paragraph("State Key Laboratory of Regional and Urban Ecology (SKLRUE), formerly State Key Laboratory of Urban and Regional Ecology")
     doc.add_paragraph(CONTACT_EN)
     add_heading(doc, "Education and appointments")
     for item in TIMELINE_EN:

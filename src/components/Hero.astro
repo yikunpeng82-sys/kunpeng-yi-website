@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { copy } = Astro.props;
+const cvHref = withBase(copy.lang === "zh" ? SITE.cvZh : SITE.cvEn);
 ---
 
 <section class="hero" aria-labelledby="hero-name">
@@ -34,16 +35,20 @@ const { copy } = Astro.props;
       <p class="hero-lab">
         <a href={SITE.labUrl} rel="noopener noreferrer">{copy.hero.lab}</a>
       </p>
-      <p class="hero-line">{copy.hero.line}</p>
+      <p class="hero-lab-former">{copy.hero.labFormer}</p>
+      <div class="hero-lines">
+        {copy.hero.lines.map((line, index) => (
+          <p class={index === 0 ? "hero-line" : "hero-core"}>{line}</p>
+        ))}
+      </div>
       <div class="hero-actions">
-        <a class="btn btn-primary" href={SITE.scholarUrl} rel="noopener noreferrer">{copy.hero.scholar}</a>
-        <a class="btn btn-orange" href={withBase(copy.lang === "zh" ? SITE.cvZh : SITE.cvEn)} download>
-          {copy.hero.cv}
-        </a>
-        <a class="btn btn-ghost" href={withBase(`${copy.homeHref}#contact`)}>{copy.hero.contact}</a>
+        <a class="btn btn-primary" href={withBase(`${copy.homeHref}#research`)}>{copy.hero.explore}</a>
+        <a class="btn btn-ghost" href={withBase(copy.publicationsHref)}>{copy.hero.publications}</a>
+        <a class="btn btn-orange" href={cvHref} download>{copy.hero.cv}</a>
       </div>
     </div>
-    <aside class="facts-card" aria-label={copy.lang === "zh" ? "数字概览" : "At a glance"}>
+    <aside class="facts-card" aria-label={copy.hero.glanceTitle}>
+      <h2 class="glance-title">{copy.hero.glanceTitle}</h2>
       <ul class="facts">
         {
           copy.hero.facts.map((fact) => (

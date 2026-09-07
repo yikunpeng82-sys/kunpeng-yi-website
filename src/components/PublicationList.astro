@@ -64,10 +64,30 @@ const bibAll = allBibTeX();
                   <span class="tag">{FILTER_LABELS[id][copy.lang]}</span>
                 ))}
               </div>
-              <p class="doi-line">
+              <p class="doi-line pub-links">
                 {paper.doi ? (
                   <a href={doiUrl(paper.doi)} target="_blank" rel="noopener noreferrer">
-                    {copy.pubs.doi}:{paper.doi}
+                    {copy.pubs.doi}
+                  </a>
+                ) : null}
+                {paper.pdfUrl ? (
+                  <a href={paper.pdfUrl} target="_blank" rel="noopener noreferrer">
+                    {copy.pubs.pdf}
+                  </a>
+                ) : null}
+                {paper.codeUrl ? (
+                  <a href={paper.codeUrl} target="_blank" rel="noopener noreferrer">
+                    {copy.pubs.code}
+                  </a>
+                ) : null}
+                {paper.dataUrl ? (
+                  <a href={paper.dataUrl} target="_blank" rel="noopener noreferrer">
+                    {copy.pubs.data}
+                  </a>
+                ) : null}
+                {paper.projectUrl ? (
+                  <a href={paper.projectUrl} target="_blank" rel="noopener noreferrer">
+                    {copy.pubs.project}
                   </a>
                 ) : null}
                 <button

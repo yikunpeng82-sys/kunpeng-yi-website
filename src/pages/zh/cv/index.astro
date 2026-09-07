@@ -36,8 +36,10 @@ const copy = getCopy("zh");
           ))
         }
       </ol>
+      <p class="about-lab">{copy.about.labNote}</p>
       <h2 class="cv-heading">{copy.cvPage.projectsTitle}</h2>
       <p>{copy.cvPage.projectsIntro}</p>
+      <p><a href={withBase("/zh/projects/")}>{copy.projectsPage.title}</a></p>
       <ol class="timeline">
         {
           CV_HOSTED_PROJECTS.zh.map((item) => (

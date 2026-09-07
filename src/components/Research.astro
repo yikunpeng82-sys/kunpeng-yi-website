@@ -18,9 +18,21 @@ const { copy } = Astro.props;
     <div class="theme-grid">
       {
         copy.research.themes.map((theme) => (
-          <article class="theme-card">
+          <article class="theme-card program-card">
             <h3>{theme.title}</h3>
-            <p>{theme.body}</p>
+            <div class="program-block">
+              <h4>{copy.research.questionLabel}</h4>
+              <p>{theme.question}</p>
+            </div>
+            <div class="program-block">
+              <h4>{copy.research.methodsLabel}</h4>
+              <p>{theme.methods}</p>
+            </div>
+            <div class="program-block">
+              <h4>{copy.research.relevanceLabel}</h4>
+              <p>{theme.relevance}</p>
+            </div>
+            {theme.note ? <p class="program-note">{theme.note}</p> : null}
           </article>
         ))
       }

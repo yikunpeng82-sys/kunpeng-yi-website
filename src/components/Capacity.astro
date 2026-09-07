@@ -8,16 +8,16 @@ interface Props {
 const { copy } = Astro.props;
 ---
 
-<section class="section" id={copy.capacity.id} aria-labelledby="capacity-title">
+<section class="section" id={copy.tools.id} aria-labelledby="tools-title">
   <div class="wrap">
     <div class="section-head">
-      <p class="kicker" style="color: var(--wetland)">{copy.capacity.kicker}</p>
-      <h2 id="capacity-title">{copy.capacity.title}</h2>
-      <p>{copy.capacity.intro}</p>
+      <p class="kicker" style="color: var(--wetland)">{copy.tools.kicker}</p>
+      <h2 id="tools-title">{copy.tools.title}</h2>
+      <p>{copy.tools.intro}</p>
     </div>
-    <div class="theme-grid">
+    <div class="featured-grid">
       {
-        copy.capacity.items.map((item) => (
+        copy.tools.items.map((item) => (
           <article class="theme-card">
             <h3>{item.title}</h3>
             <p>{item.body}</p>
@@ -25,5 +25,6 @@ const { copy } = Astro.props;
         ))
       }
     </div>
+    <p class="access-note">{copy.tools.access}</p>
   </div>
 </section>

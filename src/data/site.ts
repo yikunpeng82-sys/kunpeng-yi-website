@@ -2,7 +2,8 @@ export const SITE = {
   nameEn: "Kunpeng Yi",
   nameEnPage: "YI KUNPENG",
   nameZh: "伊坤朋",
-  titleEn: "Associate Professor",
+  titleEn: "Associate Researcher",
+  titleEnFull: "Associate Researcher / Associate Professor",
   titleZh: "副研究员",
   orgEn:
     "Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences",
@@ -33,9 +34,12 @@ export const SITE = {
   portrait: "/images/kunpeng-yi-portrait.jpg",
   ogImage: "/images/og-kunpeng-yi.jpg",
   ogFallback: "/og/share.png",
-  photoAlt: "Kunpeng Yi / 伊坤朋, Associate Professor, RCEES, CAS",
+  photoAlt: "Kunpeng Yi / 伊坤朋, Associate Researcher, RCEES, CAS",
   cvEn: "/cv/kunpeng-yi-cv-en.pdf",
   cvZh: "/cv/kunpeng-yi-cv-zh.pdf",
   bioEn: "/cv/kunpeng-yi-bio-en.pdf",
   bioZh: "/cv/kunpeng-yi-bio-zh.pdf",
 } as const;
+
+export const labCurrentEn = `${SITE.labEn} (${SITE.labEnShort})`;
+export const labFormerNoteEn = `formerly ${SITE.labFormerEn}`;

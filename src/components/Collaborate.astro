@@ -1,11 +1,13 @@
 ---
 import type { Copy } from "../data/i18n";
+import { SITE } from "../data/site";
 
 interface Props {
   copy: Copy;
 }
 
 const { copy } = Astro.props;
+const mailto = `mailto:${SITE.email}?subject=${encodeURIComponent(copy.collaborate.discussSubject)}`;
 ---
 
 <section class="section band-navy" id={copy.collaborate.id} aria-labelledby="collab-title">
@@ -14,6 +16,9 @@ const { copy } = Astro.props;
       <p class="kicker">{copy.collaborate.kicker}</p>
       <h2 id="collab-title">{copy.collaborate.title}</h2>
       <p>{copy.collaborate.intro}</p>
+      <p class="hero-actions" style="margin-top: 1.2rem">
+        <a class="btn btn-orange" href={mailto}>{copy.collaborate.discuss}</a>
+      </p>
     </div>
     <div class="collab-grid">
       {

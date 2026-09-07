@@ -1,0 +1,80 @@
+---
+import type { Copy } from "../data/i18n";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const labels = Object.fromEntries(copy.systems.regions.map((region) => [region.id, region.label]));
+---
+
+<section class="section band-sand" id={copy.systems.id} aria-labelledby="systems-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" style="color: var(--wetland)">{copy.systems.kicker}</p>
+      <h2 id="systems-title">{copy.systems.title}</h2>
+      <p>{copy.systems.intro}</p>
+    </div>
+    <div class="systems-layout">
+      <figure class="systems-map">
+        <svg viewBox="0 0 640 420" role="img" aria-labelledby="systems-caption">
+          <rect width="640" height="420" rx="20" fill="#0b1f33" />
+          <path
+            d="M312 36c18 28 22 58 18 92 8 18 28 30 48 28 22-2 40 16 36 38-6 28 8 48 32 58 20 8 28 28 18 46-14 26-8 52 10 72"
+            fill="none"
+            stroke="#3aa89d"
+            stroke-width="10"
+            stroke-linecap="round"
+            opacity="0.35"
+          />
+          <path
+            d="M312 36c18 28 22 58 18 92 8 18 28 30 48 28 22-2 40 16 36 38-6 28 8 48 32 58 20 8 28 28 18 46-14 26-8 52 10 72"
+            fill="none"
+            stroke="#e6d7b8"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-dasharray="8 10"
+          />
+          <text x="48" y="52" fill="#e6d7b8" font-size="14" font-weight="700">
+            {copy.lang === "zh" ? "东亚—澳大利西亚迁飞区（概念图）" : "East Asian–Australasian Flyway (conceptual)"}
+          </text>
+          <circle cx="318" cy="78" r="8" fill="#c45a1f" />
+          <text x="336" y="74" fill="#f6f1e6" font-size="13">{labels.miyun}</text>
+          <text x="336" y="92" fill="#e0d2b4" font-size="11">
+            {copy.lang === "zh" ? "北京腹地" : "Beijing hinterland"}
+          </text>
+          <circle cx="368" cy="168" r="8" fill="#3aa89d" />
+          <text x="386" y="164" fill="#f6f1e6" font-size="13">{labels.baiyangdian}</text>
+          <text x="386" y="182" fill="#e0d2b4" font-size="11">
+            {copy.lang === "zh" ? "洼淀湿地" : "Lowland wetland"}
+          </text>
+          <circle cx="430" cy="248" r="8" fill="#e6d7b8" />
+          <text x="448" y="244" fill="#f6f1e6" font-size="13">{labels.yangtze}</text>
+          <text x="448" y="262" fill="#e0d2b4" font-size="11">
+            {copy.lang === "zh" ? "中下游洪泛区" : "Middle–lower floodplain"}
+          </text>
+          <rect x="470" y="318" width="14" height="14" rx="3" fill="#c45a1f" opacity="0.85" />
+          <text x="494" y="322" fill="#f6f1e6" font-size="13">{labels.energy}</text>
+          <text x="494" y="340" fill="#e0d2b4" font-size="11">
+            {copy.lang === "zh" ? "重叠 / 暴露 / 规划风险" : "Overlap / exposure / planning risk"}
+          </text>
+          <text x="48" y="390" fill="#e0d2b4" font-size="12">
+            {copy.lang === "zh" ? "北 → 南 示意走廊，非实测轨迹。" : "North → south schematic corridor, not tracked trajectories."}
+          </text>
+        </svg>
+        <figcaption id="systems-caption">{copy.systems.caption}</figcaption>
+      </figure>
+      <ul class="systems-list">
+        {
+          copy.systems.regions.map((region) => (
+            <li>
+              <strong>{region.label}</strong>
+              <span>{region.body}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

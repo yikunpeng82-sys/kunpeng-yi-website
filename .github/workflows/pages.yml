@@ -29,11 +29,8 @@ jobs:
           node-version: lts/*
           cache: npm
 
-      - name: Install
-        run: npm ci
-
-      - name: Build
-        run: npm run build
+      - name: Install, check, and build
+        run: npm ci && npm run check && npm run build
         env:
           SITE_URL: https://yikunpeng82-sys.github.io
           BASE_PATH: /kunpeng-yi-website/

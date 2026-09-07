@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "description": "Personal academic website of Kunpeng Yi (伊坤朋), Associate Professor at RCEES, CAS.",
+  "description": "Personal academic website of Kunpeng Yi (伊坤朋), Associate Researcher at RCEES, CAS.",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

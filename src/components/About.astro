@@ -1,0 +1,39 @@
+---
+import type { Copy } from "../data/i18n";
+import { SITE } from "../data/site";
+import { withBase } from "../lib/paths";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+---
+
+<section class="section" id={copy.about.id} aria-labelledby="about-title">
+  <div class="wrap about-grid">
+    <div>
+      <p class="kicker" style="color: var(--wetland)">{copy.about.kicker}</p>
+      <h2 id="about-title">{copy.about.title}</h2>
+      <p class="about-lead">{copy.about.lead}</p>
+      <p class="about-lab">{copy.about.labNote}</p>
+      {copy.about.body.map((para) => <p>{para}</p>)}
+    </div>
+    <aside class="about-side">
+      <figure class="about-photo">
+        <img
+          src={withBase(SITE.portrait)}
+          alt={SITE.photoAlt}
+          width="352"
+          height="440"
+          decoding="async"
+        />
+      </figure>
+      <p class="about-note">
+        <a href={SITE.ucasUrl} rel="noopener noreferrer">{copy.contact.ucas}</a>
+        ·
+        <a href={withBase(copy.lang === "zh" ? "/zh/cv/" : "/cv/")}>{copy.cvPage.title}</a>
+      </p>
+    </aside>
+  </div>
+</section>

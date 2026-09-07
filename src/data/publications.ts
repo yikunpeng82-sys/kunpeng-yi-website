@@ -23,6 +23,10 @@ export interface Publication {
   pages?: string;
   doi?: string;
   url?: string;
+  pdfUrl?: string;
+  codeUrl?: string;
+  dataUrl?: string;
+  projectUrl?: string;
   filters: FilterId[];
   selected?: boolean;
   home?: boolean;
@@ -70,8 +74,8 @@ export const publications: Publication[] = [
     selected: true,
     home: true,
     summary: {
-      en: "Wind-energy infrastructure and bird migration: spatial coincidence of energy facilities and migratory landscapes, treated as a planning question rather than measured collision or demographic impact.",
-      zh: "讨论风能基础设施与鸟类迁徙。能源设施与迁徙景观的空间并存作为规划问题陈述，不引申为碰撞或种群影响的实测结论。",
+      en: "Wind-energy infrastructure and bird migration: spatial overlap, exposure and planning context along migratory landscapes.",
+      zh: "讨论风能基础设施与鸟类迁徙：能源设施与迁徙景观的空间重叠、暴露与规划语境。",
     },
   },
   {
@@ -238,8 +242,8 @@ export const publications: Publication[] = [
     filters: ["energy"],
     note: "环境保护科学, 2022, 48(3): 13-19.",
     summary: {
-      en: "Optimizing wind-farm and power-grid layout to reduce bird-strike risk. Spatial layout is treated as a planning question, not as measured collision rates.",
-      zh: "讨论优化风电场与电网布局以降低鸟撞风险。空间布局作为规划问题，不引申为碰撞率实测。",
+      en: "Optimizing wind-farm and power-grid layout as a spatial-planning response where energy infrastructure and migratory landscapes overlap.",
+      zh: "从空间规划响应出发，讨论在能源设施与迁徙景观重叠处如何优化风电场与电网布局。",
     },
   },
   {
