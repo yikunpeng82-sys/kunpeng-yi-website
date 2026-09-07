@@ -48,9 +48,12 @@ const address = copy.lang === "zh" ? SITE.addressZh : SITE.addressEn;
       </article>
       <article class="contact-card">
         <h3 style="margin:0 0 0.4rem; color: var(--navy)">{copy.contact.labProfile}</h3>
-        <a href={SITE.labProfileUrl} rel="noopener noreferrer">dse.rcees.cas.cn</a>
+        <a href={SITE.labUrl} rel="noopener noreferrer">dse.rcees.cas.cn</a>
+      </article>
+      <article class="contact-card">
+        <h3 style="margin:0 0 0.4rem; color: var(--navy)">{copy.contact.github}</h3>
+        <a href={SITE.githubUrl} rel="noopener noreferrer">github.com/yikunpeng82-sys/kunpeng-yi-website</a>
       </article>
     </div>
-    <p class="about-note" style="margin-top:1.2rem">{copy.contact.placeholders}</p>
   </div>
 </section>

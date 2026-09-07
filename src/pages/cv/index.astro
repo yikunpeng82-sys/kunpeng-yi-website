@@ -20,10 +20,11 @@ const copy = getCopy("en");
       <p>{copy.cvPage.body}</p>
       <p class="chooser-label">{copy.cvPage.chooserLabel}</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href={withBase(CV_FILES.enPdf)} download>{copy.cvPage.downloadEn}</a>
-        <a class="btn btn-ghost" href={withBase(CV_FILES.zhPdf)} download>{copy.cvPage.downloadZh}</a>
+        <a class="btn btn-primary" href={withBase(CV_FILES.enPdf)} download>{copy.cvPage.downloadCvEn}</a>
+        <a class="btn btn-ghost" href={withBase(CV_FILES.zhPdf)} download>{copy.cvPage.downloadCvZh}</a>
+        <a class="btn btn-ghost" href={withBase(CV_FILES.enBio)} download>{copy.cvPage.downloadBioEn}</a>
+        <a class="btn btn-ghost" href={withBase(CV_FILES.zhBio)} download>{copy.cvPage.downloadBioZh}</a>
       </div>
-      <p class="about-note">{copy.cvPage.privacy}</p>
       <h2 class="cv-heading">{copy.about.timelineTitle}</h2>
       <ol class="timeline">
         {

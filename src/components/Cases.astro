@@ -1,0 +1,33 @@
+---
+import type { Copy } from "../data/i18n";
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+---
+
+<section class="section band-sand" id={copy.cases.id} aria-labelledby="cases-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" style="color: var(--wetland)">{copy.cases.kicker}</p>
+      <h2 id="cases-title">{copy.cases.title}</h2>
+      <p>{copy.cases.intro}</p>
+    </div>
+    <div class="theme-grid">
+      {
+        copy.cases.items.map((item) => (
+          <article class="theme-card case-card">
+            <figure class="case-figure" aria-label={copy.cases.placeholder}>
+              <span class="case-figure-label">{item.figure}</span>
+              <figcaption>{copy.cases.placeholder}</figcaption>
+            </figure>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

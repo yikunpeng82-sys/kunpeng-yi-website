@@ -25,5 +25,19 @@ const { copy } = Astro.props;
         ))
       }
     </div>
+    <div class="student-panel">
+      <div>
+        <h3>{copy.collaborate.directionsLabel}</h3>
+        <ul>
+          {copy.collaborate.directions.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h3>{copy.collaborate.majorsLabel}</h3>
+        <ul>
+          {copy.collaborate.majors.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
   </div>
 </section>

@@ -1,8 +1,4 @@
-/**
- * Seeded publications confirmed from Crossref and official RCEES/CAS lists.
- * No live Scholar scrape. Citation counts are intentionally omitted.
- * Papers without a verified DOI are listed with source notes only.
- */
+/** Publications list shown on the site. Citation counts are omitted. */
 
 export const FILTERS = [
   "movement",
@@ -56,8 +52,8 @@ export const publications: Publication[] = [
     filters: ["remote-sensing"],
     home: true,
     summary: {
-      en: "A case study of bird-diversity responses associated with the Beijing 2022 Winter Olympics, as recorded in Crossref.",
-      zh: "以北京2022年冬奥会为例，讨论大型活动影响下的鸟类多样性响应（Crossref 记录）。",
+      en: "A case study of bird-diversity responses associated with the Beijing 2022 Winter Olympics.",
+      zh: "以北京2022年冬奥会为例，讨论大型活动影响下的鸟类多样性响应。",
     },
   },
   {
@@ -74,8 +70,8 @@ export const publications: Publication[] = [
     selected: true,
     home: true,
     summary: {
-      en: "Crossref-confirmed article on wind-energy infrastructure and bird migration. Spatial coincidence of energy facilities and migratory landscapes is treated here as a planning question, not as measured collision or demographic impact.",
-      zh: "Crossref 确认的文章，讨论风能基础设施与鸟类迁徙。能源设施与迁徙景观的空间并存在此作为规划问题陈述，不引申为碰撞或种群影响的实测结论。",
+      en: "Wind-energy infrastructure and bird migration: spatial coincidence of energy facilities and migratory landscapes, treated as a planning question rather than measured collision or demographic impact.",
+      zh: "讨论风能基础设施与鸟类迁徙。能源设施与迁徙景观的空间并存作为规划问题陈述，不引申为碰撞或种群影响的实测结论。",
     },
   },
   {
@@ -127,6 +123,7 @@ export const publications: Publication[] = [
     pages: "64",
     doi: "10.3390/rs16010064",
     filters: ["wetlands", "remote-sensing"],
+    selected: true,
     home: true,
     summary: {
       en: "MaxEnt and Google Earth Engine are used to evaluate suitable habitat for Baer’s Pochard at Baiyangdian.",
@@ -239,10 +236,10 @@ export const publications: Publication[] = [
     issue: "3",
     pages: "13-19",
     filters: ["energy"],
-    note: "Listed on the official RCEES laboratory profile as 任西婵, 伊坤朋, 曹垒. 环境保护科学, 2022, 48(3): 13-19. No Crossref DOI verified at build time.",
+    note: "环境保护科学, 2022, 48(3): 13-19.",
     summary: {
-      en: "Chinese-language article on optimizing wind-farm and power-grid layout to reduce bird-strike risk. Spatial layout is treated as a planning question, not as measured collision rates. No Crossref DOI verified at build time.",
-      zh: "讨论优化风电场与电网布局以降低鸟撞风险。空间布局在此作为规划问题，不引申为碰撞率实测。构建时未在 Crossref 核验到 DOI。实验室主页著录：环境保护科学, 2022, 48(3): 13-19。",
+      en: "Optimizing wind-farm and power-grid layout to reduce bird-strike risk. Spatial layout is treated as a planning question, not as measured collision rates.",
+      zh: "讨论优化风电场与电网布局以降低鸟撞风险。空间布局作为规划问题，不引申为碰撞率实测。",
     },
   },
   {
@@ -387,10 +384,9 @@ export const publications: Publication[] = [
     journal: "Wildfowl",
     pages: "97-123",
     filters: ["movement"],
-    note: "Listed on the official RCEES laboratory profile. No Crossref DOI verified at build time.",
     summary: {
-      en: "Official-list paper on Swan Goose flyway structure and seasonal distributions in East Asia. DOI not verified in Crossref at build time.",
-      zh: "实验室主页收录的鸿雁迁飞区结构与季节分布研究。构建时未在 Crossref 核验到 DOI。",
+      en: "Swan Goose flyway structure and seasonal distributions in East Asia.",
+      zh: "东亚鸿雁迁飞区结构与季节分布。",
     },
   },
   {
@@ -421,10 +417,9 @@ export const publications: Publication[] = [
     volume: "6",
     pages: "157-180",
     filters: ["movement"],
-    note: "Listed on the official RCEES laboratory profile. No Crossref DOI verified at build time.",
     summary: {
-      en: "Official-list paper on Greylag Goose flyway connectivity and population status in East Asia. DOI not verified in Crossref at build time.",
-      zh: "实验室主页收录的灰雁迁飞连通性与种群状况研究。构建时未在 Crossref 核验到 DOI。",
+      en: "Greylag Goose flyway connectivity and population status in East Asia.",
+      zh: "东亚灰雁迁飞连通性与种群状况。",
     },
   },
   {
@@ -607,11 +602,69 @@ export function doiUrl(doi: string): string {
   return `https://doi.org/${doi}`;
 }
 
+export function displayAuthor(name: string, locale: Locale): string {
+  return name === "Kunpeng Yi" ? (locale === "zh" ? "伊坤朋" : "Kunpeng Yi") : name;
+}
+
+export function isYi(name: string): boolean {
+  return name === "Kunpeng Yi";
+}
+
 export function formatAuthors(authors: string[], locale: Locale): string {
-  const marked = authors.map((name) =>
-    name === "Kunpeng Yi" ? (locale === "zh" ? "伊坤朋" : "Kunpeng Yi") : name,
-  );
-  return marked.join(", ");
+  return authors.map((name) => displayAuthor(name, locale)).join(", ");
+}
+
+function surnameGiven(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0];
+  const given = parts.slice(0, -1).join(" ");
+  const surname = parts[parts.length - 1];
+  return `${surname}, ${given}`;
+}
+
+export function formatCitation(paper: Publication, locale: Locale): string {
+  const authors = paper.authors.map((name) => {
+    const shown = displayAuthor(name, locale);
+    if (locale === "zh" && name === "Kunpeng Yi") return shown;
+    return surnameGiven(shown);
+  });
+  let authorLine: string;
+  if (authors.length === 1) authorLine = authors[0];
+  else if (authors.length === 2) authorLine = `${authors[0]} & ${authors[1]}`;
+  else authorLine = `${authors.slice(0, -1).join(", ")} & ${authors[authors.length - 1]}`;
+
+  const loc = [paper.volume, paper.issue ? `(${paper.issue})` : "", paper.pages ? `: ${paper.pages}` : ""]
+    .join("")
+    .replace(/\(\)/g, "");
+  const journalBit = loc ? `${paper.journal} ${loc}` : paper.journal;
+  return `${authorLine} (${paper.year}). ${paper.title}. ${journalBit}.`;
+}
+
+export function toBibTeX(paper: Publication): string {
+  const first = paper.authors[0]?.split(/\s+/).pop()?.toLowerCase() ?? "yi";
+  const key = `${first}${paper.year}${paper.id.replace(/[^a-z0-9]/gi, "").slice(0, 12)}`;
+  const authors = paper.authors.map((name) => {
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 1) return parts[0];
+    return `${parts[parts.length - 1]}, ${parts.slice(0, -1).join(" ")}`;
+  }).join(" and ");
+  const lines = [
+    `@article{${key},`,
+    `  author  = {${authors}},`,
+    `  title   = {${paper.title}},`,
+    `  journal = {${paper.journal}},`,
+    `  year    = {${paper.year}},`,
+  ];
+  if (paper.volume) lines.push(`  volume  = {${paper.volume}},`);
+  if (paper.issue) lines.push(`  number  = {${paper.issue}},`);
+  if (paper.pages) lines.push(`  pages   = {${paper.pages}},`);
+  if (paper.doi) lines.push(`  doi     = {${paper.doi}},`);
+  lines.push(`}`);
+  return lines.join("\n");
+}
+
+export function allBibTeX(): string {
+  return byYearDesc(publications).map(toBibTeX).join("\n\n");
 }
 
 export function byYearDesc(items: Publication[]): Publication[] {

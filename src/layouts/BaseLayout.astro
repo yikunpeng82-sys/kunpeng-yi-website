@@ -5,6 +5,8 @@ import "@fontsource/inter/latin-700.css";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { SITE } from "../data/site";
 import type { Copy } from "../data/i18n";
 import { alternatePaths, withBase } from "../lib/paths";
@@ -26,8 +28,11 @@ const alternates = alternatePaths(canonicalPath);
 const alternateEn = new URL(withBase(alternates.en), origin).href;
 const alternateZh = new URL(withBase(alternates.zh), origin).href;
 
-const ogImage = new URL(withBase(SITE.ogImage), origin).href;
+const ogJpgOnDisk = existsSync(join(process.cwd(), "public/images/og-kunpeng-yi.jpg"));
+const ogPath = ogJpgOnDisk ? SITE.ogImage : SITE.ogFallback;
+const ogImage = new URL(withBase(ogPath), origin).href;
 const portraitUrl = new URL(withBase(SITE.portrait), origin).href;
+const ogType = ogJpgOnDisk ? "image/jpeg" : "image/png";
 
 const personLd = jsonLd ?? {
   "@context": "https://schema.org",
@@ -42,7 +47,8 @@ const personLd = jsonLd ?? {
   affiliation: {
     "@type": "Organization",
     name: SITE.orgEn,
-    department: SITE.labEn,
+    department: `${SITE.labEn} (${SITE.labEnShort})`,
+    url: SITE.labUrl,
   },
   address: {
     "@type": "PostalAddress",
@@ -54,8 +60,9 @@ const personLd = jsonLd ?? {
     SITE.scholarUrl,
     SITE.researchGateUrl,
     SITE.casUrl,
-    SITE.labProfileUrl,
+    SITE.labUrl,
     SITE.ucasUrl,
+    SITE.githubUrl,
   ],
 };
 ---
@@ -80,7 +87,7 @@ const personLd = jsonLd ?? {
     <meta property="og:locale" content={copy.meta.ogLocale} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:alt" content={SITE.photoAlt} />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:type" content={ogType} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />

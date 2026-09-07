@@ -270,6 +270,16 @@ a:hover {
 
 .hero-role,
 .hero-aff,
+.hero-lab a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.hero-lab a:hover {
+  color: #fff;
+}
+
 .hero-lab {
   margin: 0 0 0.25rem;
   color: rgba(246, 241, 230, 0.88);
@@ -336,10 +346,145 @@ a:hover {
   color: #fff;
 }
 
-.cv-note {
-  margin: 0.85rem 0 0;
-  font-size: 0.85rem;
-  color: var(--sand-dim);
+.facts-card {
+  background: rgba(246, 241, 230, 0.08);
+  border: 1px solid rgba(230, 215, 184, 0.22);
+  border-radius: 20px;
+  padding: 1.4rem 1.5rem;
+}
+
+.facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.facts li {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.facts strong {
+  font-size: 1.55rem;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.facts span {
+  color: var(--sand);
+  font-size: 0.95rem;
+}
+
+.case-figure {
+  margin: 0 0 1rem;
+  min-height: 8.5rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background:
+    linear-gradient(160deg, rgba(11, 31, 51, 0.08), rgba(28, 74, 60, 0.12)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(19, 40, 61, 0.04),
+      rgba(19, 40, 61, 0.04) 8px,
+      transparent 8px,
+      transparent 16px
+    );
+  border: 1px dashed rgba(19, 40, 61, 0.28);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.case-figure-label {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.case-figure figcaption {
+  margin-top: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.cite-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.cite-item {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+}
+
+.cite {
+  margin: 0;
+  color: var(--ink);
+}
+
+.cite strong {
+  color: var(--navy);
+}
+
+.student-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.6rem;
+}
+
+.student-panel h3 {
+  margin: 0 0 0.6rem;
+  color: var(--sand);
+}
+
+.student-panel ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: rgba(246, 241, 230, 0.88);
+}
+
+.pub-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.bib-btn {
+  appearance: none;
+  margin-left: 0.8rem;
+  border: 0;
+  background: transparent;
+  color: var(--wetland);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  padding: 0;
+}
+
+.bib-btn:hover {
+  color: var(--orange);
+}
+
+.page-hero .btn-ghost {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.page-hero .btn-ghost:hover {
+  background: var(--navy);
+  color: var(--paper);
 }
 
 .section {
@@ -706,7 +851,8 @@ a:hover {
   .pub-grid,
   .about-grid,
   .collab-grid,
-  .contact-grid {
+  .contact-grid,
+  .student-panel {
     grid-template-columns: 1fr;
   }
 

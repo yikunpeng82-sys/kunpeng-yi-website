@@ -1,14 +1,14 @@
 ---
 import type { Copy } from "../data/i18n";
-import { selectedPublications, formatAuthors, doiUrl, FILTER_LABELS } from "../data/publications";
-import type { FilterId } from "../data/publications";
+import { selectedPublications, doiUrl, isYi, displayAuthor } from "../data/publications";
+import { withBase } from "../lib/paths";
 
 interface Props {
   copy: Copy;
 }
 
 const { copy } = Astro.props;
-const items = selectedPublications();
+const items = selectedPublications().slice(0, 5);
 ---
 
 <section class="section band-sand" id={copy.selected.id} aria-labelledby="selected-title">
@@ -18,33 +18,39 @@ const items = selectedPublications();
       <h2 id="selected-title">{copy.selected.title}</h2>
       <p>{copy.selected.intro}</p>
     </div>
-    <div class="work-grid">
+    <ol class="cite-list">
       {
         items.map((paper) => (
-          <article class="work-card">
-            <p class="meta-line">
-              {paper.year} · {paper.journal}
-            </p>
-            <h3>{paper.title}</h3>
-            <p class="authors">{formatAuthors(paper.authors, copy.lang)}</p>
-            <p>{paper.summary[copy.lang]}</p>
-            <div class="tags">
-              {paper.filters.map((id: FilterId) => (
-                <span class="tag">{FILTER_LABELS[id][copy.lang]}</span>
+          <li class="cite-item">
+            <p class="cite">
+              {paper.authors.map((name, i) => (
+                <>
+                  {i > 0 ? ", " : ""}
+                  {isYi(name) ? <strong>{displayAuthor(name, copy.lang)}</strong> : displayAuthor(name, copy.lang)}
+                </>
               ))}
-            </div>
-            <p style="margin: 0.9rem 0 0">
-              {paper.doi ? (
-                <a href={doiUrl(paper.doi)} target="_blank" rel="noopener noreferrer">
-                  {copy.selected.read}: {paper.doi}
-                </a>
-              ) : (
-                <span>{copy.selected.doiPending}</span>
-              )}
+              {" "}({paper.year}). {paper.title}. <em>{paper.journal}</em>
+              {paper.volume ? ` ${paper.volume}` : ""}
+              {paper.issue ? `(${paper.issue})` : ""}
+              {paper.pages ? `: ${paper.pages}` : ""}.
             </p>
-          </article>
+            {
+              paper.doi ? (
+                <p class="doi-line">
+                  <a href={doiUrl(paper.doi)} target="_blank" rel="noopener noreferrer">
+                    {copy.selected.read}: {paper.doi}
+                  </a>
+                </p>
+              ) : null
+            }
+          </li>
         ))
       }
-    </div>
+    </ol>
+    <p style="margin: 1.5rem 0 0">
+      <a class="btn btn-primary" href={withBase(copy.publicationsHref)} style="background: var(--navy); color: var(--paper)">
+        {copy.selected.more}
+      </a>
+    </p>
   </div>
 </section>

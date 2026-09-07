@@ -6,8 +6,6 @@ interface Props {
 }
 
 const { copy } = Astro.props;
-const highlights = copy.research.themes.filter((t) => t.highlight);
-const rest = copy.research.themes.filter((t) => !t.highlight);
 ---
 
 <section class="section" id={copy.research.id} aria-labelledby="research-title">
@@ -19,7 +17,7 @@ const rest = copy.research.themes.filter((t) => !t.highlight);
     </div>
     <div class="theme-grid">
       {
-        highlights.map((theme) => (
+        copy.research.themes.map((theme) => (
           <article class="theme-card">
             <h3>{theme.title}</h3>
             <p>{theme.body}</p>
@@ -27,14 +25,5 @@ const rest = copy.research.themes.filter((t) => !t.highlight);
         ))
       }
     </div>
-    {
-      rest.map((theme) => (
-        <article class="theme-quiet">
-          <h3>{theme.title}</h3>
-          <p>{theme.body}</p>
-          <p style="margin-top:0.6rem">{copy.research.moreNote}</p>
-        </article>
-      ))
-    }
   </div>
 </section>

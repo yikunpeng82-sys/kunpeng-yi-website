@@ -1,5 +1,5 @@
 import { SITE } from "./site";
-import { CV_OVERVIEW_ZH, CV_TIMELINE } from "./cv";
+import { CV_TIMELINE } from "./cv";
 import type { FilterId, Locale } from "./publications";
 import { FILTER_LABELS } from "./publications";
 
@@ -38,26 +38,41 @@ export interface Copy {
     affiliation: string;
     lab: string;
     line: string;
-    core: string;
-    explore: string;
-    selected: string;
+    scholar: string;
     cv: string;
-    cvNote: string;
-    vizCaption: string;
-    vizPixelLabel: string;
+    contact: string;
+    facts: Array<{ value: string; label: string }>;
   };
   research: {
     id: string;
     kicker: string;
     title: string;
     intro: string;
-    moreNote: string;
     themes: Array<{
       id: string;
       title: string;
       body: string;
-      highlight: boolean;
     }>;
+  };
+  cases: {
+    id: string;
+    kicker: string;
+    title: string;
+    intro: string;
+    placeholder: string;
+    items: Array<{
+      id: string;
+      title: string;
+      body: string;
+      figure: string;
+    }>;
+  };
+  capacity: {
+    id: string;
+    kicker: string;
+    title: string;
+    intro: string;
+    items: Array<{ title: string; body: string }>;
   };
   selected: {
     id: string;
@@ -65,14 +80,7 @@ export interface Copy {
     title: string;
     intro: string;
     read: string;
-    doiPending: string;
-  };
-  systems: {
-    id: string;
-    kicker: string;
-    title: string;
-    intro: string;
-    groups: Array<{ label: string; tags: string[] }>;
+    more: string;
   };
   pubs: {
     id: string;
@@ -86,7 +94,9 @@ export interface Copy {
     filterLabel: string;
     empty: string;
     doi: string;
-    sourceNote: string;
+    bibtex: string;
+    bibtexAll: string;
+    copied: string;
     yearHeading: string;
     filters: Record<FilterId, string>;
   };
@@ -96,9 +106,6 @@ export interface Copy {
     title: string;
     lead: string;
     body: string[];
-    nameNote: string;
-    sourceNote: string;
-    labNote: string;
     timelineTitle: string;
     timeline: Array<{ role: string; place: string }>;
   };
@@ -108,6 +115,10 @@ export interface Copy {
     title: string;
     intro: string;
     cards: Array<{ title: string; body: string }>;
+    majorsLabel: string;
+    majors: string[];
+    directionsLabel: string;
+    directions: string[];
   };
   contact: {
     id: string;
@@ -122,12 +133,11 @@ export interface Copy {
     scholar: string;
     cas: string;
     labProfile: string;
-    placeholders: string;
+    github: string;
   };
   footer: {
     identity: string;
     scope: string;
-    license: string;
   };
   notFound: {
     title: string;
@@ -140,10 +150,11 @@ export interface Copy {
     title: string;
     body: string;
     back: string;
-    downloadEn: string;
-    downloadZh: string;
+    downloadCvEn: string;
+    downloadCvZh: string;
+    downloadBioEn: string;
+    downloadBioZh: string;
     chooserLabel: string;
-    privacy: string;
     projectsTitle: string;
     projectsIntro: string;
   };
@@ -172,9 +183,8 @@ export const en: Copy = {
   publicationsHref: "/publications/",
   nav: [
     { id: "research", href: "/#research", label: "Research" },
-    { id: "selected-work", href: "/#selected-work", label: "Selected Work" },
-    { id: "publications", href: "/publications/", label: "Publications" },
-    { id: "about", href: "/#about", label: "About" },
+    { id: "selected-work", href: "/#selected-work", label: "Papers" },
+    { id: "publications", href: "/publications/", label: "Selected publications" },
     { id: "collaborate", href: "/#collaborate", label: "Collaborate" },
     { id: "contact", href: "/#contact", label: "Contact" },
   ],
@@ -187,118 +197,117 @@ export const en: Copy = {
     kicker: SITE.positioningEn,
     name: SITE.nameEn,
     nameAlt: SITE.nameZh,
-    role: `${SITE.titleEn} / ${SITE.titleZh}`,
+    role: SITE.titleEn,
     affiliation: SITE.orgEn,
-    lab: SITE.labEn,
+    lab: `${SITE.labEn} (${SITE.labEnShort})`,
     line: SITE.heroLineEn,
-    core: "I combine animal tracking, Earth observation and geospatial intelligence to understand how migratory birds navigate rapidly changing wetlands, river basins and energy landscapes—and translate that evidence into conservation and spatial planning.",
-    explore: "Explore Research",
-    selected: "Selected Publications",
-    cv: "Download CV",
-    cvNote: "English CV (PDF). The Chinese overview is on the Chinese site.",
-    vizCaption:
-      "Conceptual visualization — East Asian–Australasian Flyway outline, GPS tracks and stopovers, wetland pixels, turbine silhouettes and a white-naped crane silhouette. Not observational map data.",
-    vizPixelLabel: "wetland pixels",
+    scholar: "Google Scholar",
+    cv: "Academic CV",
+    contact: "Contact",
+    facts: [
+      { value: "40+", label: "papers" },
+      { value: "10+", label: "hosted projects / >RMB 8 million" },
+      { value: "3", label: "patents" },
+      { value: "2", label: "co-authored / edited books" },
+    ],
   },
   research: {
     id: "research",
     kicker: "Research",
-    title: "Four themes, one flyway question",
+    title: "Three themes",
     intro:
-      "Work is organised around how migratory waterbirds use—and lose—wetland, river-basin and energy landscapes along the East Asian–Australasian Flyway. The first three themes are highlighted here; conservation translation is the fourth.",
-    moreNote:
-      "Theme four is developed through collaboration and spatial-planning applications rather than as a standalone product line.",
+      "How migratory waterbirds use—and lose—wetland, river-basin and energy landscapes along the East Asian–Australasian Flyway.",
     themes: [
       {
         id: "movement",
         title: "Movement ecology",
-        body: "GPS/GSM tracking is used to recover routes, stopovers, staging duration and migratory connectivity for threatened waterbirds—including white-naped crane, Siberian crane and East Asian geese—across the annual cycle.",
-        highlight: true,
+        body: "GPS/GSM tracking recovers routes, stopovers, staging duration and migratory connectivity for threatened waterbirds—including white-naped crane, Siberian crane and East Asian geese—across the annual cycle.",
       },
       {
         id: "earth-observation",
-        title: "Earth observation of wetlands",
+        title: "Wetland Earth observation",
         body: "Satellite time series map water, land and vegetation so that habitat availability can be read from pixels: reservoir drawdown, floodplain wet–dry cycles, and landscape change around stopovers.",
-        highlight: true,
       },
       {
         id: "energy",
-        title: "Energy landscapes and spatial planning",
+        title: "Energy landscapes and birds",
         body: "Wind-energy and related infrastructure are treated as features of the landscapes birds already use. Analyses describe spatial overlap and planning context. They do not interpret overlap as collision rates or demographic impact.",
-        highlight: true,
+      },
+    ],
+  },
+  cases: {
+    id: "cases",
+    kicker: "Study systems",
+    title: "Research regions and focal species",
+    intro:
+      "Three programmes that join tracking, wetland remote sensing and spatial planning.",
+    placeholder: "Figure placeholder — licensed paper figures are not reproduced here.",
+    items: [
+      {
+        id: "miyun",
+        title: "Miyun Reservoir and the white-naped crane",
+        body: "Reservoir water-level management is linked to habitat available to white-naped cranes (Antigone vipio) on migration through the Beijing hinterland.",
+        figure: "Miyun · Antigone vipio",
       },
       {
-        id: "conservation",
-        title: "From evidence to conservation action",
-        body: "Tracking and remote-sensing results are translated into protected-area gap assessments, habitat-restoration briefs and spatial-planning advice for wetlands, reservoirs and flyway corridors.",
-        highlight: false,
+        id: "yangtze",
+        title: "Yangtze floodplain waterbirds",
+        body: "Floodplain wet–dry cycles and protected-area coverage for Siberian crane, Swan Goose and other waterbirds that use the middle and lower Yangtze.",
+        figure: "Yangtze floodplain · waterbirds",
+      },
+      {
+        id: "wind",
+        title: "Global wind energy and migration",
+        body: "Spatial overlap between expanding wind-energy infrastructure and migratory landscapes, used as a planning question rather than a collision census.",
+        figure: "Wind · migration",
+      },
+    ],
+  },
+  capacity: {
+    id: "capacity",
+    kicker: "In progress",
+    title: "Current capacity",
+    intro:
+      "Hosted programmes combine satellite tracking with Earth observation. Individual GPS sample sizes are not listed here.",
+    items: [
+      {
+        title: "NSFC General Programme",
+        body: "Multi-scale movement patterns and core-habitat monitoring along migration routes (2023–2026); retrieval of movement information from multi-source remote sensing and satellite tracking (2019–2022).",
+      },
+      {
+        title: "National Key R&D Programme",
+        body: "A hosted sub-project under China’s National Key R&D Programme, alongside locally commissioned work on wetland restoration and spatial planning.",
+      },
+      {
+        title: "Tracking and remote sensing",
+        body: "GSM–GPS telemetry joined to wetland and land-cover time series for flyway sites, reservoirs and energy landscapes.",
       },
     ],
   },
   selected: {
     id: "selected-work",
-    kicker: "Selected work",
-    title: "Papers that define the current programme",
-    intro:
-      "Four Crossref-verified articles. Summaries stay close to the published record. Publisher figures are not reproduced here.",
+    kicker: "Selected publications",
+    title: "Five papers",
+    intro: "A short list that frames the current programme. The fuller selected list is on the publications page.",
     read: "DOI",
-    doiPending: "DOI not verified",
-  },
-  systems: {
-    id: "study-systems",
-    kicker: "Study systems",
-    title: "Places and species, not an encyclopaedia",
-    intro:
-      "Tags mark systems that appear in the seeded papers. They are labels for navigation, not species accounts.",
-    groups: [
-      {
-        label: "Flyway & landscapes",
-        tags: [
-          "East Asian–Australasian Flyway",
-          "Wetlands",
-          "River basins",
-          "Energy landscapes",
-          "Reservoirs",
-        ],
-      },
-      {
-        label: "Places",
-        tags: [
-          "Miyun Reservoir",
-          "Baiyangdian",
-          "Poyang Lake",
-          "Yangtze River Basin",
-          "Mongolian Plateau",
-          "Northeast China",
-        ],
-      },
-      {
-        label: "Species",
-        tags: [
-          "White-naped Crane (Antigone vipio)",
-          "Siberian Crane (Leucogeranus leucogeranus)",
-          "Swan Goose (Anser cygnoides)",
-          "Greylag Goose (Anser anser)",
-          "Baer’s Pochard (Aythya baeri)",
-        ],
-      },
-    ],
+    more: "All selected publications",
   },
   pubs: {
     id: "publications",
     kicker: "Publications",
-    title: "Selected recent papers",
-    intro:
-      "Six entries from a static, Crossref-checked seed file. The full list is reverse-chronological and filterable. Citation counts are not displayed.",
-    viewAll: "All publications",
-    pageTitle: "Publications",
+    title: "Selected publications",
+    intro: "Five papers from the current programme.",
+    viewAll: "Selected publications",
+    pageTitle: "Selected publications",
     pageIntro:
-      "Seeded papers in which Kunpeng Yi is a named author, ordered newest first. Filters follow research themes. This page does not scrape Google Scholar. Entries without a verified DOI are labelled as such.",
+      "A selected list of papers in which Kunpeng Yi is a named author, newest first. The complete record is larger than this page.",
     filterAll: "All",
     filterLabel: "Filter publications",
     empty: "No papers in this filter.",
     doi: "doi",
-    sourceNote: "Unverified DOI",
+    bibtex: "BibTeX",
+    bibtexAll: "Download BibTeX",
+    copied: "Copied",
     yearHeading: "Year",
     filters,
   },
@@ -306,47 +315,51 @@ export const en: Copy = {
     id: "about",
     kicker: "About",
     title: "Kunpeng Yi",
-    lead: `${SITE.titleEn} at the ${SITE.orgEn}, based in the ${SITE.labEn}.`,
+    lead: `${SITE.titleEn} at the ${SITE.orgEn}, based in the ${SITE.labEn} (${SITE.labEnShort}).`,
     body: [
       "I combine animal tracking, Earth observation and geospatial intelligence to understand how migratory birds navigate rapidly changing wetlands, river basins and energy landscapes—and translate that evidence into conservation and spatial planning.",
-      "Appointments follow the supplied English CV and the RCEES faculty page: Hokkaido University doctorate, postdoctoral ecological remote sensing at the CAS Aerospace Information Research Institute (former RADI), then Associate Researcher / Associate Professor at RCEES from April 2017.",
-      "The PI-supplied Chinese CV overview records more than 40 papers, more than ten hosted projects (total hosted funding exceeding RMB 8 million), three invention patents and two monographs.",
-      "The RCEES faculty page lists the research direction as 生态环境遥感研究. Ph.D. thesis (Hokkaido University): 遥感卫星观测及模型在生物质火烧中的应用研究.",
     ],
-    nameNote: "伊坤朋 / Kunpeng Yi.",
-    sourceNote:
-      "Output counts on this page follow the newer PI-supplied Chinese CV overview (40+ papers, 10+ hosted projects). The January 2024 RCEES faculty page is older (30+ papers, 7 hosted projects).",
-    labNote: `Current laboratory name: ${SITE.labEn}. The RCEES faculty page still uses the former name ${SITE.labFormerEn}. This is one laboratory, not two.`,
-    timelineTitle: "Compact timeline",
+    timelineTitle: "Appointments and education",
     timeline: [...CV_TIMELINE.en],
   },
   collaborate: {
     id: "collaborate",
     kicker: "Collaborate",
-    title: "Research first, then people",
+    title: "Collaboration and students",
     intro:
-      "This page lists research collaboration only. It does not advertise jobs, products or consultancy retainers.",
+      "Research collaboration, master’s supervision, and a working email.",
     cards: [
       {
         title: "Research collaboration",
-        body: "I welcome collaborations that join animal tracking, wetland remote sensing and conservation-oriented spatial planning along the East Asian–Australasian Flyway—especially shared telemetry, habitat time series, and how migratory birds respond to human activity and extreme climate events across wetland, forest and grassland systems.",
+        body: "Collaborations that join animal tracking, wetland remote sensing and conservation-oriented spatial planning along the East Asian–Australasian Flyway—shared telemetry, habitat time series, and how migratory birds respond to human activity and extreme climate events.",
       },
       {
         title: "Prospective students",
-        body: "Prospective students may write to the institutional email. Disciplinary areas listed on the RCEES faculty page for inquiry are remote sensing science, geographic information science, ecology and geography. This is not an advertisement of a numbered cohort or an open post.",
+        body: "Master’s supervisor (硕导). Write to the institutional email. This page does not announce a numbered intake.",
       },
       {
         title: "Professional service",
-        body: "China Grassland Society (council member). Member of the Geographical Society of China, the Ecological Society of China, the Chinese Society of Remote Sensing, and the China Ornithological Society. Guest-in-chief editor of special issues for Remote Sensing, Land and Fire. The faculty-page awards section is empty; no honours are listed here.",
+        body: "Council member, China Grassland Society. Member of the Geographical Society of China, the Ecological Society of China, the Chinese Society of Remote Sensing, and the China Ornithological Society. Guest Editor of special issues for Remote Sensing, Land and Fire.",
       },
+    ],
+    majorsLabel: "Majors",
+    majors: [
+      "071300 Ecology",
+      "0705Z1 Natural Resources Science",
+      "070503 Cartography and Geographic Information Systems",
+    ],
+    directionsLabel: "Research directions",
+    directions: [
+      "运动生态学，迁徙动物监测与保护",
+      "湿地监测与生态修复",
+      "生态系统遥感监测与评估",
     ],
   },
   contact: {
     id: "contact",
     kicker: "Contact",
-    title: "Email is the working channel",
-    intro:
-      "Write to the institutional address or use the office line. There is no form backend on this static site. Office telephone and postal address are taken from the public RCEES faculty page.",
+    title: "Contact",
+    intro: "Institutional email is the working channel.",
     email: "Email",
     phone: "Office",
     address: "Postal address",
@@ -354,13 +367,12 @@ export const en: Copy = {
     researchGate: "ResearchGate",
     scholar: "Google Scholar",
     cas: "CAS profile",
-    labProfile: "Laboratory page",
-    placeholders: "ORCID and GitHub remain listed in ASSETS_NEEDED.md until confirmed.",
+    labProfile: "Laboratory",
+    github: "Website source",
   },
   footer: {
     identity: `${SITE.nameEn} · ${SITE.nameZh} · ${SITE.orgShortEn}`,
-    scope: "Research, teaching, collaboration and conservation only.",
-    license: "Static academic site. No citation metrics. No live Scholar scrape.",
+    scope: `${SITE.labEn} (${SITE.labEnShort})`,
   },
   notFound: {
     title: "Page not found",
@@ -370,15 +382,16 @@ export const en: Copy = {
     homeOtherHref: "/zh/",
   },
   cvPage: {
-    title: "Curriculum vitae",
-    body: "Official English CV reconstructed from the author-supplied document. Gender, place of birth, private telephone and home address are not published on this site.",
+    title: "Academic CV",
+    body: "Academic CV and a one-page academic bio for meetings.",
     back: "Back to home",
-    downloadEn: "Download English CV (PDF)",
-    downloadZh: "中文简介（PDF）",
-    chooserLabel: "Choose a language",
-    privacy: "The PDF may be hosted as supplied. This website does not display gender, CCP membership, birthplace, or a private/home telephone.",
-    projectsTitle: "Hosted NSFC projects (faculty page)",
-    projectsIntro: "Two hosted National Natural Science Foundation of China General Programme titles listed on the RCEES faculty page. The full project record stays in the CV PDF.",
+    downloadCvEn: "Academic CV (English, PDF)",
+    downloadCvZh: "学术简历（中文，PDF）",
+    downloadBioEn: "Academic Bio (English, PDF)",
+    downloadBioZh: "学术简介（中文，PDF）",
+    chooserLabel: "Downloads",
+    projectsTitle: "Hosted NSFC projects",
+    projectsIntro: "Two National Natural Science Foundation of China General Programme titles currently hosted.",
   },
 };
 
@@ -397,10 +410,9 @@ export const zh: Copy = {
   publicationsHref: "/zh/publications/",
   nav: [
     { id: "research", href: "/zh/#research", label: "研究" },
-    { id: "selected-work", href: "/zh/#selected-work", label: "代表工作" },
-    { id: "publications", href: "/zh/publications/", label: "论文" },
-    { id: "about", href: "/zh/#about", label: "简介" },
-    { id: "collaborate", href: "/zh/#collaborate", label: "合作" },
+    { id: "selected-work", href: "/zh/#selected-work", label: "论文" },
+    { id: "publications", href: "/zh/publications/", label: "代表性论文" },
+    { id: "collaborate", href: "/zh/#collaborate", label: "合作与招生" },
     { id: "contact", href: "/zh/#contact", label: "联系" },
   ],
   meta: {
@@ -412,101 +424,115 @@ export const zh: Copy = {
     kicker: SITE.positioningZh,
     name: SITE.nameZh,
     nameAlt: SITE.nameEn,
-    role: `${SITE.titleZh} / ${SITE.titleEn}`,
+    role: SITE.titleZh,
     affiliation: SITE.orgZh,
     lab: SITE.labZh,
     line: SITE.heroLineZh,
-    core: "融合动物追踪、卫星遥感与地理空间智能，研究候鸟如何响应快速变化的湿地、流域与能源景观，并将科学证据转化为保护与空间规划行动。",
-    explore: "了解研究",
-    selected: "代表论文",
-    cv: "下载简历",
-    cvNote: "中文简介（PDF）。英文 CV 见英文站点。",
-    vizCaption:
-      "概念示意 — 东亚—澳大利西亚迁飞区轮廓、GPS 轨迹与停歇地、湿地像元、风机剪影与白枕鹤剪影。并非观测地图数据。",
-    vizPixelLabel: "湿地像元",
+    scholar: "Google Scholar",
+    cv: "学术简历",
+    contact: "联系",
+    facts: [
+      { value: "40余篇", label: "学术论文" },
+      { value: "10余项", label: "主持项目 / 经费800余万元" },
+      { value: "3项", label: "发明专利" },
+      { value: "2部", label: "参编专著" },
+    ],
   },
   research: {
     id: "research",
     kicker: "研究",
-    title: "四个主题，一条迁飞区问题",
+    title: "三个主题",
     intro:
-      "工作围绕东亚—澳大利西亚迁飞区的候鸟如何利用——以及失去——湿地、流域与能源景观展开。首页突出前三个主题；保护转化是第四主题。",
-    moreNote: "第四主题通过合作与空间规划应用展开，而不是独立的产品线。",
+      "围绕东亚—澳大利西亚迁飞区的候鸟如何利用——以及失去——湿地、流域与能源景观。",
     themes: [
       {
         id: "movement",
         title: "运动生态学",
         body: "利用 GPS/GSM 追踪恢复受胁水鸟的迁徙路线、停歇地、停歇时长与连通性，对象包括白枕鹤、白鹤及东亚雁类，覆盖全年生活史。",
-        highlight: true,
       },
       {
         id: "earth-observation",
         title: "湿地地球观测",
         body: "用卫星时间序列制图水体、陆地与植被，从像元读取栖息地可用性：水库消落、洪泛湿地干湿节律，以及停歇地周边的景观变化。",
-        highlight: true,
       },
       {
         id: "energy",
-        title: "能源景观与空间规划",
+        title: "能源景观与鸟类",
         body: "风能及相关基础设施被视为鸟类已经使用的景观要素。分析描述空间并存与规划语境，不将空间重叠解释为碰撞率或种群影响。",
-        highlight: true,
+      },
+    ],
+  },
+  cases: {
+    id: "cases",
+    kicker: "研究区域与重点物种",
+    title: "研究区域与重点物种",
+    intro: "追踪、湿地遥感与空间规划交汇的三条工作线。",
+    placeholder: "图示占位 — 本站不转载受版权保护的论文插图。",
+    items: [
+      {
+        id: "miyun",
+        title: "密云水库与白枕鹤",
+        body: "将水库水位管理与白枕鹤（Antigone vipio）在北京腹地迁徙停歇期的栖息地可用性联系起来。",
+        figure: "密云 · 白枕鹤",
       },
       {
-        id: "conservation",
-        title: "从证据到保护行动",
-        body: "将追踪与遥感结果转化为保护地空缺评估、栖息地修复建议，以及面向湿地、水库与迁飞通道的空间规划依据。",
-        highlight: false,
+        id: "yangtze",
+        title: "长江洪泛湿地水鸟",
+        body: "长江中下游洪泛湿地的干湿节律与保护地覆盖，对象包括白鹤、鸿雁及其他水鸟。",
+        figure: "长江洪泛区 · 水鸟",
+      },
+      {
+        id: "wind",
+        title: "全球风能与迁徙",
+        body: "扩张中的风能设施与迁徙景观的空间重叠，作为规划问题提出，而不是碰撞数量统计。",
+        figure: "风能 · 迁徙",
+      },
+    ],
+  },
+  capacity: {
+    id: "capacity",
+    kicker: "进行中",
+    title: "当前能力",
+    intro: "主持项目将卫星追踪与地球观测结合。此处不列出 GPS 个体数量。",
+    items: [
+      {
+        title: "国家自然科学基金面上项目",
+        body: "鸟类多尺度运动行为模式及其迁徙路线核心栖息地监测与保护（2023–2026）；基于多源遥感和卫星追踪大数据的鸟类运动行为信息反演（2019–2022）。",
+      },
+      {
+        title: "国家重点研发计划",
+        body: "主持国家重点研发计划子课题，并承担湿地恢复与空间规划方面的地方委托工作。",
+      },
+      {
+        title: "追踪与遥感",
+        body: "将 GSM–GPS 遥测与湿地、地表覆盖时间序列对接，覆盖迁飞停歇地、水库与能源景观。",
       },
     ],
   },
   selected: {
     id: "selected-work",
-    kicker: "代表工作",
-    title: "构成当前研究主线的论文",
-    intro: "四篇经 Crossref 核验的文章。摘要紧贴已发表记录，不转载出版商图片。",
+    kicker: "代表性论文",
+    title: "五篇论文",
+    intro: "构成当前研究主线的短名单。更完整的代表性列表见论文页。",
     read: "DOI",
-    doiPending: "DOI 未核验",
-  },
-  systems: {
-    id: "study-systems",
-    kicker: "研究系统",
-    title: "地点与物种标签，而非百科",
-    intro: "标签对应种子文献中出现的系统，仅供检索，不作物种志。",
-    groups: [
-      {
-        label: "迁飞区与景观",
-        tags: ["东亚—澳大利西亚迁飞区", "湿地", "流域", "能源景观", "水库"],
-      },
-      {
-        label: "地点",
-        tags: ["密云水库", "白洋淀", "鄱阳湖", "长江流域", "蒙古高原", "中国东北"],
-      },
-      {
-        label: "物种",
-        tags: [
-          "白枕鹤 Antigone vipio",
-          "白鹤 Leucogeranus leucogeranus",
-          "鸿雁 Anser cygnoides",
-          "灰雁 Anser anser",
-          "青头潜鸭 Aythya baeri",
-        ],
-      },
-    ],
+    more: "全部代表性论文",
   },
   pubs: {
     id: "publications",
     kicker: "论文",
-    title: "近期论文摘选",
-    intro: "静态、经 Crossref 核对的种子文件中的六条。完整列表按时间倒序并提供筛选。不展示被引次数。",
-    viewAll: "全部论文",
-    pageTitle: "论文",
+    title: "代表性论文",
+    intro: "当前研究主线中的五篇。",
+    viewAll: "代表性论文",
+    pageTitle: "代表性论文",
     pageIntro:
-      "伊坤朋为署名作者的种子文献，最新在前。筛选对应研究主题。本页不抓取 Google Scholar。未核验 DOI 的条目已标注。",
+      "伊坤朋为署名作者的代表性论文，最新在前。完整目录长于本页。",
     filterAll: "全部",
     filterLabel: "筛选论文",
     empty: "该分类下暂无条目。",
     doi: "doi",
-    sourceNote: "DOI 未核验",
+    bibtex: "BibTeX",
+    bibtexAll: "下载 BibTeX",
+    copied: "已复制",
     yearHeading: "年份",
     filters: filtersZh,
   },
@@ -516,21 +542,16 @@ export const zh: Copy = {
     title: "伊坤朋",
     lead: `${SITE.orgZh}${SITE.titleZh}，任职于${SITE.labZh}。`,
     body: [
-      CV_OVERVIEW_ZH,
-      "中科院教师页研究方向：生态环境遥感研究。博士学位论文（北海道大学）：遥感卫星观测及模型在生物质火烧中的应用研究。",
+      "融合动物追踪、卫星遥感与地理空间智能，研究候鸟如何响应快速变化的湿地、流域与能源景观，并将科学证据转化为保护与空间规划行动。",
     ],
-    nameNote: "伊坤朋 / Kunpeng Yi。",
-    sourceNote:
-      "论文与项目数量采用较新的作者中文简介（40余篇、主持10余项）。2024年1月中科院教师页为较早记录（30余篇、主持7项）。",
-    labNote: `实验室现用名：${SITE.labZh}。中科院教师页仍作${SITE.labFormerZh}。同一实验室，不是两个单位。`,
-    timelineTitle: "简要经历",
+    timelineTitle: "学历与任职",
     timeline: [...CV_TIMELINE.zh],
   },
   collaborate: {
     id: "collaborate",
-    kicker: "合作",
-    title: "先研究，后人事",
-    intro: "本页只列研究合作，不发布岗位、产品或顾问聘任。",
+    kicker: "合作与招生",
+    title: "合作与招生",
+    intro: "研究合作、硕士研究生指导，以及工作邮箱。",
     cards: [
       {
         title: "研究合作",
@@ -538,20 +559,27 @@ export const zh: Copy = {
       },
       {
         title: "意向学生",
-        body: "意向学生可写信至机构邮箱。教师页列出的可咨询学科方向为：遥感科学；地理信息系统科学；生态学；地理学。本站不发布定额招生或在招岗位。",
+        body: "硕导。请写信至机构邮箱。本页不发布定额招生人数。",
       },
       {
         title: "学术任职",
-        body: "中国草学会理事；中国地理学会、中国生态学会、中国遥感学会、中国鸟类学会会员；Remote Sensing、Land、Fire 专刊 guest-in-chief editor。教师页获奖及荣誉栏为空，本站不另列荣誉。",
+        body: "中国草学会理事；中国地理学会、中国生态学会、中国遥感学会、中国鸟类学会会员；Remote Sensing、Land、Fire 专刊 Guest Editor。",
       },
+    ],
+    majorsLabel: "招生专业",
+    majors: ["071300生态学", "0705Z1自然资源学", "070503地图学与地理信息系统"],
+    directionsLabel: "招生方向",
+    directions: [
+      "运动生态学，迁徙动物监测与保护",
+      "湿地监测与生态修复",
+      "生态系统遥感监测与评估",
     ],
   },
   contact: {
     id: "contact",
     kicker: "联系",
-    title: "工作邮箱是主要渠道",
-    intro:
-      "请使用机构邮箱或办公电话。本静态站点没有表单后端。办公电话与通讯地址取自生态环境研究中心公开教师页。",
+    title: "联系",
+    intro: "请使用机构邮箱。",
     email: "电子邮箱",
     phone: "办公电话",
     address: "通讯地址",
@@ -559,13 +587,12 @@ export const zh: Copy = {
     researchGate: "ResearchGate",
     scholar: "Google Scholar",
     cas: "中科院页面",
-    labProfile: "实验室页面",
-    placeholders: "ORCID 与 GitHub 待确认，详见 ASSETS_NEEDED.md。",
+    labProfile: "实验室",
+    github: "网站源码",
   },
   footer: {
     identity: `${SITE.nameZh} · ${SITE.nameEn} · ${SITE.orgShortZh}`,
-    scope: "仅涉及研究、教学、合作与保护。",
-    license: "静态学术网站。不展示被引指标。不实时抓取 Scholar。",
+    scope: SITE.labZh,
   },
   notFound: {
     title: "页面不存在",
@@ -575,15 +602,16 @@ export const zh: Copy = {
     homeOtherHref: "/",
   },
   cvPage: {
-    title: "个人简历",
-    body: "根据作者提供的中文简介重建。网站不发布性别、政治面貌、籍贯或私人电话。",
+    title: "学术简历",
+    body: "学术简历，以及供会议使用的一页学术简介。",
     back: "返回首页",
-    downloadEn: "English CV (PDF)",
-    downloadZh: "下载中文简介（PDF）",
-    chooserLabel: "选择语言",
-    privacy: "下载文件按作者提供的学术文本重建。本站不发布性别、政治面貌、籍贯或私人电话。",
-    projectsTitle: "主持的国家自然科学基金（教师页）",
-    projectsIntro: "生态环境研究中心教师页列出的两项面上项目。完整项目记录只放在简历 PDF，不在首页展开。",
+    downloadCvEn: "Academic CV (English, PDF)",
+    downloadCvZh: "学术简历（中文，PDF）",
+    downloadBioEn: "Academic Bio (English, PDF)",
+    downloadBioZh: "学术简介（中文，PDF）",
+    chooserLabel: "下载",
+    projectsTitle: "主持的国家自然科学基金",
+    projectsIntro: "目前主持的两项国家自然科学基金面上项目。",
   },
 };
 

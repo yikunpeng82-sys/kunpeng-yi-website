@@ -2,10 +2,13 @@
 import type { Copy } from "../data/i18n";
 import {
   groupedByYear,
-  formatAuthors,
   doiUrl,
   FILTERS,
   FILTER_LABELS,
+  isYi,
+  displayAuthor,
+  toBibTeX,
+  allBibTeX,
 } from "../data/publications";
 
 interface Props {
@@ -14,18 +17,25 @@ interface Props {
 
 const { copy } = Astro.props;
 const groups = groupedByYear();
+const bibAll = allBibTeX();
 ---
 
 <div>
-  <div class="filters" role="group" aria-label={copy.pubs.filterLabel}>
-    <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">{copy.pubs.filterAll}</button>
-    {
-      FILTERS.map((id) => (
-        <button class="filter-btn" type="button" data-filter={id} aria-pressed="false">
-          {copy.pubs.filters[id]}
-        </button>
-      ))
-    }
+  <div class="pub-toolbar">
+    <div class="filters" role="group" aria-label={copy.pubs.filterLabel}>
+      <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">{copy.pubs.filterAll}</button>
+      {
+        FILTERS.map((id) => (
+          <button class="filter-btn" type="button" data-filter={id} aria-pressed="false">
+            {copy.pubs.filters[id]}
+          </button>
+        ))
+      }
+    </div>
+    <button class="filter-btn" type="button" data-bib-all data-label={copy.pubs.bibtexAll} data-copied={copy.pubs.copied}>
+      {copy.pubs.bibtexAll}
+    </button>
+    <textarea class="visually-hidden" data-bib-all-src readonly set:html={bibAll}></textarea>
   </div>
   <div class="pub-list" data-pub-list>
     {
@@ -37,15 +47,18 @@ const groups = groupedByYear();
           </h2>
           {group.papers.map((paper) => (
             <article class="pub-card" data-filters={paper.filters.join(" ")}>
-              <p class="meta-line">
-                {paper.year} · {paper.journal}
-                {paper.volume ? `, ${paper.volume}` : ""}
+              <p class="cite">
+                {paper.authors.map((name, i) => (
+                  <>
+                    {i > 0 ? ", " : ""}
+                    {isYi(name) ? <strong>{displayAuthor(name, copy.lang)}</strong> : displayAuthor(name, copy.lang)}
+                  </>
+                ))}
+                {" "}({paper.year}). {paper.title}. <em>{paper.journal}</em>
+                {paper.volume ? ` ${paper.volume}` : ""}
                 {paper.issue ? `(${paper.issue})` : ""}
-                {paper.pages ? `: ${paper.pages}` : ""}
+                {paper.pages ? `: ${paper.pages}` : ""}.
               </p>
-              <h3 class="pub-title">{paper.title}</h3>
-              <p class="authors">{formatAuthors(paper.authors, copy.lang)}</p>
-              <p>{paper.summary[copy.lang]}</p>
               <div class="tags">
                 {paper.filters.map((id) => (
                   <span class="tag">{FILTER_LABELS[id][copy.lang]}</span>
@@ -56,12 +69,17 @@ const groups = groupedByYear();
                   <a href={doiUrl(paper.doi)} target="_blank" rel="noopener noreferrer">
                     {copy.pubs.doi}:{paper.doi}
                   </a>
-                ) : (
-                  <span>
-                    {copy.pubs.sourceNote}
-                    {paper.note ? ` — ${paper.note}` : ""}
-                  </span>
-                )}
+                ) : null}
+                <button
+                  class="bib-btn"
+                  type="button"
+                  data-bib
+                  data-label={copy.pubs.bibtex}
+                  data-copied={copy.pubs.copied}
+                >
+                  {copy.pubs.bibtex}
+                </button>
+                <textarea class="visually-hidden" data-bib-src readonly set:html={toBibTeX(paper)}></textarea>
               </p>
             </article>
           ))}
@@ -73,7 +91,7 @@ const groups = groupedByYear();
 </div>
 
 <script>
-  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>(".filter-btn"));
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>(".filter-btn[data-filter]"));
   const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-pub-list] [data-filters]"));
   const groups = Array.from(document.querySelectorAll<HTMLElement>("[data-year-group]"));
   const empty = document.querySelector<HTMLElement>("[data-empty]");
@@ -101,4 +119,34 @@ const groups = groupedByYear();
   for (const button of buttons) {
     button.addEventListener("click", () => apply(button.dataset.filter ?? "all"));
   }
+
+  async function copyText(source: HTMLTextAreaElement | null, button: HTMLButtonElement) {
+    if (!source) return;
+    const label = button.dataset.label ?? "BibTeX";
+    const copied = button.dataset.copied ?? "Copied";
+    try {
+      await navigator.clipboard.writeText(source.value);
+      button.textContent = copied;
+      window.setTimeout(() => {
+        button.textContent = label;
+      }, 1600);
+    } catch {
+      source.hidden = false;
+      source.focus();
+      source.select();
+    }
+  }
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-bib]")) {
+    button.addEventListener("click", () => {
+      const source = button.parentElement?.querySelector<HTMLTextAreaElement>("[data-bib-src]") ?? null;
+      void copyText(source, button);
+    });
+  }
+
+  const allBtn = document.querySelector<HTMLButtonElement>("[data-bib-all]");
+  const allSrc = document.querySelector<HTMLTextAreaElement>("[data-bib-all-src]");
+  allBtn?.addEventListener("click", () => {
+    void copyText(allSrc, allBtn);
+  });
 </script>
