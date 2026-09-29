@@ -45,3 +45,11 @@ python3 scripts/build-cv-documents.py
 ```
 
 Requires `reportlab` and `python-docx`. CJK text uses WenQuanYi Micro Hei.
+
+Rebuild the 50-slide seminar 《野生动物运动生态学前沿》:
+
+```bash
+python3 scripts/build_movement_ecology_seminar.py
+```
+
+Requires `python-pptx` and `fonttools`. Output: `talks/wildlife-movement-ecology-frontiers.pptx`. The deck embeds a subset of WenQuanYi Micro Hei so Chinese text stays readable when that font is not installed locally.
